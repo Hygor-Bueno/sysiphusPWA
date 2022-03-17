@@ -21,6 +21,9 @@
     padding: 0px;
     list-style: none;
 }
+#headerMenu nav ul li{
+    font-size: 18px;
+}
 #headerMenu nav ul li:hover{
     background:rgb(149,137,110);
 }

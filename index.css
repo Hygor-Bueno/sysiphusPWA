@@ -1,7 +1,6 @@
 /* Configurações de estilo básicos da Página. */
 h1,body{
     margin:0px;
-    color:red;
 }
 
 body{  
@@ -39,5 +38,4 @@ body{
 }
 .mercuryColor{
     background:rgb(77,77,77);
-    color: red;
 }

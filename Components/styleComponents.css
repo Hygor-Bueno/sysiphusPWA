@@ -29,7 +29,6 @@
 }
 
 #headerMenu button{
-    position: fixed;
     border:none;
     right: 5px;
     background: transparent;
@@ -80,13 +79,18 @@
 /* Estilo da página criar checklist. */
 
 #pageNewChecklist{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
     height: 100%;
 }
 #createChecklist{
-    height:50%;
+    margin:5px;
+    height: 50%;
 }
 #viewChecklist{
-    height:50%;
+    height: 50%;
 }
 #createChecklist, #viewChecklist{
     display: flex;

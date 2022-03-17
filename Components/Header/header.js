@@ -3,11 +3,11 @@ export class HeaderApp{
         return`
             <header id="headerMenu">  
                 <div id="divHeader">
-                    <button data-function="menuViewSwitch" title="Botão que abre ou fecha o menu">&#9776;</button>
                     <div id="divTitleApp">
                         <img src="./Assets/Images/ImageSisifu/Sisifu.png" title="Logo Sisiphus System"/>
                         <h1> Sisyphus System </h1>
                     </div>
+                    <button data-function="menuViewSwitch" title="Botão que abre ou fecha o menu">&#9776;</button>
                 </div>     
                 ${this.menu()}         
             </header>

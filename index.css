@@ -1,0 +1,42 @@
+/* Configurações de estilo básicos da Página. */
+h1,body{
+    margin:0px;
+}
+
+body{  
+    display: flex;
+    flex-direction: column;
+    width:100vw;
+    height:100vh;
+    font-family:"TimesNewRoman"
+}
+@font-face {
+    font-family:"TimesNewRoman";
+    src: url("./Assets/Fonts/TimesNewRoman.ttf");
+}
+
+
+
+
+/* Esse código será apagado. serve apenas para vizualizar as cores que iremos trabalhar no projeto; */
+.circle{
+    margin:5px;
+    height: 180px;
+    width: 180px;
+    border-radius:95px;
+    border: 1px solid black;
+    display:flex;   
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+.venusColor{
+    background:rgb(230,228,205);
+}
+.marsColor{
+    background:rgb(149,137,110);
+}
+.mercuryColor{
+    background:rgb(77,77,77);
+    color: red;
+}

@@ -1,6 +1,7 @@
 /* Configurações de estilo básicos da Página. */
-h1,body{
+h1,body,button{
     margin:0px;
+    padding:0px;
 }
 
 body{  
@@ -15,6 +16,21 @@ body{
     src: url("./Assets/Fonts/TimesNewRoman.ttf");
 }
 
+.buttonDefualt{
+    padding:2px 5px;
+    border-radius: 5px;
+    font-size:16px;
+    height:25px;
+    background:rgb(149,137,110);
+    border:none;
+    border-bottom:solid 3px rgb(77,77,77);
+    color:white;
+}
+.buttonDefualt:active{
+    position:relative;
+    top:3px;
+    border-bottom: none;
+}
 /* Esse código será apagado. serve apenas para vizualizar as cores que iremos trabalhar no projeto; */
 .circle{
     margin:5px;

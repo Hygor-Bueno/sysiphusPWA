@@ -1,67 +1,73 @@
 /* Estilo do Menu. */
-#headerMenu{
-    background:rgb(77,77,77);
+#headerMenu {
+    background: rgb(77, 77, 77);
     color: #fff;
 }
-#divHeader{
+
+#divHeader {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 50px;
-    width:100%;
-    border-bottom: solid 1px rgb(50,50,50);
+    width: 100%;
+    border-bottom: solid 1px rgb(50, 50, 50);
 }
-#headerMenu nav{
+
+#headerMenu nav {
     width: 100%;
 }
 
-#headerMenu nav ul{
+#headerMenu nav ul {
     width: 100%;
     margin: 5px;
     padding: 0px;
     list-style: none;
 }
-#headerMenu nav ul li{
+
+#headerMenu nav ul li {
     font-size: 18px;
 }
-#headerMenu nav ul li:hover{
-    background:rgb(149,137,110);
+
+#headerMenu nav ul li:hover {
+    background: rgb(149, 137, 110);
 }
 
-#headerMenu button{
-    border:none;
+#headerMenu button {
+    border: none;
     right: 5px;
     background: transparent;
     color: #fff;
     font-size: 22px;
 }
 
-#divTitleApp{
+#divTitleApp {
     display: flex;
     align-items: center;
     width: 100%;
-    height:100%;
-}
-#divTitleApp img{
-    height: 40px;
-    width: 40px;
-    border-radius:20px;
-    margin-right: 10px;
-    background:rgb(230,228,205);
+    height: 100%;
 }
 
-#divTitleApp button:hover{
+#divTitleApp img {
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+    background: rgb(230, 228, 205);
+}
+
+#divTitleApp button:hover {
     cursor: pointer;
 }
 
 /* Estilo do corpo da página. */
-#bodyContent{
+#bodyContent {
     height: 100%;
     width: 100%;
-    background:rgb(230,228,205);
+    background: rgb(230, 228, 205);
     overflow-y: auto;
 }
-#contentDefault{
+
+#contentDefault {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -69,36 +75,97 @@
     height: 100%;
     width: 100%;
 }
-#contentDefault img{
+
+#contentDefault img {
     display: block;
     opacity: 0.12;
-    width:350px;
+    width: 350px;
     height: 350px;
 }
 
 /* Estilo da página criar checklist. */
 
-#pageNewChecklist{
+#pageNewChecklist {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
     height: 100%;
 }
-#createChecklist{
-    margin:5px;
+
+#createChecklist {
+    margin: 5px;
     height: 50%;
 }
-#viewChecklist{
+
+#viewChecklist {
     height: 50%;
 }
-#createChecklist, #viewChecklist{
+
+#createChecklist, #viewChecklist {
     display: flex;
     flex-direction: column;
 }
-#divCreateChecklist{
+
+#divCreateChecklist {
+    display: grid;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 40px auto 40px;
+    grid-template-areas:
+        "header header header header"
+        "aside section section section"
+        "footer footer footer footer";
     flex-grow: 1;
     width: 100%;
-    background: rgba(77,77,77,.2);
+    background: rgba(77, 77, 77, .2);
+    border-radius: 5px;
+    border: solid 1px rgb(77, 77, 77);
+}
+
+#divCreateChecklist header{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    border-bottom: solid 1px rgb(77, 77, 77);
+    padding:5px;
+    grid-area: header;
+}
+#divCreateChecklist header b{
+    background:white;
     border-radius: 20px;
+    size:20px;
+    padding: 0px 4px;
+}
+
+#divCreateChecklist header button{
+    align-items:center;
+    background:white; 
+    font-weight:bold;
+    border: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 10px;
+}
+
+#divCreateChecklist header button:hover{
+    cursor: pointer;
+}
+
+#divCreateChecklist section{
+    overflow-y: auto;   
+    grid-area: section; 
+}
+
+#divCreateChecklist aside{
+    border-right: solid 1px rgb(77, 77, 77);
+    overflow-y: auto;
+    grid-area: aside;
+}
+#divCreateChecklist footer{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: solid 1px rgb(77, 77, 77);
+    grid-area: footer;
 }

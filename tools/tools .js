@@ -1,7 +1,10 @@
 import { Routers } from "../Routers/router.js";
+import { Utils } from "../Utils/utils.js";
 
 export class SisyphusTools{
-    navRouter = new Routers
+    navRouter = new Routers;
+    utils = new Utils;
+
     pageClick(){      
         document.addEventListener("click", element=>{     
             // console.log(element.target.tagName)        
@@ -18,6 +21,10 @@ export class SisyphusTools{
             case 'navPages':
                 this.navPages(element);
                 break;
+            case 'uniqueClicked':{
+                this.util.selectUniqueButton(element.getAttribute("class"),element);
+                break;
+            }
             default:
                 console.error("Invalid data-function");
         }

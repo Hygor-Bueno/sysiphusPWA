@@ -7,7 +7,6 @@ export class Pages{
         return`
             <section id="pageNewChecklist">
                 <div id="createChecklist">
-                    <h1>Parte para criar lista de tarefas</h1>
                     ${this.checklistGenerator.template()}
                 </div>
                 <div id="viewChecklist">

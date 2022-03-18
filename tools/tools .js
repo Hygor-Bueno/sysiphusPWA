@@ -22,7 +22,7 @@ export class SisyphusTools{
                 this.navPages(element);
                 break;
             case 'uniqueClicked':{
-                this.util.selectUniqueButton(element.getAttribute("class"),element);
+                this.utils.selectUniqueButton(element.getAttribute("class"),element);
                 break;
             }
             default:

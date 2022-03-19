@@ -12,7 +12,15 @@ export class checklistGenerator{
             </header>            
             
             <aside>
+                <div id="checklistDate">
+                    <input type="date" title
+                </div>
+                <div id="controllerItens">
+
+                </div>
+                <div id="scaleValue">
                 
+                </div>
             </aside>
                 
             <section>
@@ -22,7 +30,7 @@ export class checklistGenerator{
             <footer>
                 <button type="button" class="buttonDefualt"> Limpar </button>
                 <button type="button" class="buttonDefualt"> Cancelar </button>
-                <button type="button" class="buttonDefualt"> Enviar </button> 
+                <button type="button" class="buttonDefualt"> Concluir </button> 
             </footer>
         </div>
         `

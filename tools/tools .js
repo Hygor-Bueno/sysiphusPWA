@@ -6,8 +6,7 @@ export class SisyphusTools{
     utils = new Utils;
 
     pageClick(){      
-        document.addEventListener("click", element=>{     
-            // console.log(element.target.tagName)        
+        document.addEventListener("click", element=>{             
             this.validateElement(element.target) && this.filterFunction(element.target);
         })
     }

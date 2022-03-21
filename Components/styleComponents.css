@@ -110,12 +110,12 @@
 #divCreateChecklist {
     display: grid;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 40px auto 40px;
     grid-template-areas:
-        "header header header header"
-        "aside section section section"
-        "footer footer footer footer";
+        "header  header header"
+        "aside  section section"
+        "footer  footer footer";
     flex-grow: 1;
     width: 100%;
     background: rgba(77, 77, 77, .2);

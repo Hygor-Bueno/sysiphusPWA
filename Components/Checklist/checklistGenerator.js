@@ -32,7 +32,9 @@ export class checklistGenerator{
                     <input type="date" title="data da tarefa" />
                 </div>
                 <div id="controllerItens">
-                    <label>Quantidade de dias: <b>${this.currentItem} / ${quantitiesItems}</b></label>
+                    <label>Quantidade de dias: </label> 
+                    </br>  
+                    <b>${this.currentItem} / ${quantitiesItems}</b> 
                 </div>
                 <div id="scaleValue">
                     <label>Dificuldade:</label>

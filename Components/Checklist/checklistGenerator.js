@@ -1,4 +1,5 @@
 export class checklistGenerator{
+    currentItem=1;
     template(){
         return `
         <div id="divCreateChecklist">
@@ -10,19 +11,7 @@ export class checklistGenerator{
                     <button type="button" class="dayQuantitsButton" id="clicked_31" data-function="uniqueClicked" value="31" title="Lista de tarefas para o mês" style="opacity:.5"> M </button>
                 </div> 
             </header>            
-            
-            <aside>
-                <div id="checklistDate">
-                    <input type="date" title
-                </div>
-                <div id="controllerItens">
-
-                </div>
-                <div id="scaleValue">
-                
-                </div>
-            </aside>
-                
+                ${this.asideTemplate(7)}
             <section>
                 
             </section>
@@ -33,6 +22,28 @@ export class checklistGenerator{
                 <button type="button" class="buttonDefualt"> Concluir </button> 
             </footer>
         </div>
+        `
+    }
+    asideTemplate(quantitiesItems){
+        return `
+            <aside>
+                <div id="checklistDate">
+                    <label>Data da tarefa:</label>
+                    <input type="date" title="data da tarefa" />
+                </div>
+                <div id="controllerItens">
+                    <label>Quantidade de dias: <b>${this.currentItem} / ${quantitiesItems}</b></label>
+                </div>
+                <div id="scaleValue">
+                    <label>Dificuldade:</label>
+                    <select>
+                        <option value="0" hidden="true">Selecione o Nível:</option>
+                        <option value="1">Fácil</option>
+                        <option value="2">Médio</option>
+                        <option value="3">Alto</option>
+                    </select>
+                </div>
+            </aside>
         `
     }
 }

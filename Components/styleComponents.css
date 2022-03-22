@@ -113,9 +113,9 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 40px auto 40px;
     grid-template-areas:
-        "header  header header"
-        "aside  section section"
-        "footer  footer footer";
+        "header header header"
+        "aside section section"
+        "footer footer footer";
     flex-grow: 1;
     width: 100%;
     background: rgba(77, 77, 77, .2);
@@ -158,10 +158,38 @@
 }
 
 #divCreateChecklist aside{
+    padding: 2px;
     border-right: solid 1px rgb(77, 77, 77);
     overflow-y: auto;
     grid-area: aside;
 }
+
+#divCreateChecklist aside div{
+    border-bottom: solid 1px rgb(77, 77, 77);
+    padding: 5px 0px;
+}
+
+#checklistDate{
+    display:flex;
+    flex-direction: column;
+    width: 100%; 
+}
+#checklistDate input{
+    background:rgb(149,137,110);
+    color:white;
+    border: none;
+    border-radius: 5px;
+}
+#controllerItens label b{
+    color:rgb(77, 77, 77);
+}
+#scaleValue select{
+    background:rgb(149,137,110);
+    color:white;
+    border: none;
+    border-radius: 5px;
+}
+
 #divCreateChecklist footer{
     display:flex;
     justify-content: space-around;

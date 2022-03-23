@@ -83,7 +83,7 @@
     height: 350px;
 }
 
-/* Estilo da página criar checklist. */
+/* Estilo do Componente criar checklist. */
 
 #pageNewChecklist {
     display: flex;
@@ -131,71 +131,102 @@
     padding:5px;
     grid-area: header;
 }
-#divCreateChecklist header b{
-    background:white;
-    border-radius: 20px;
-    size:20px;
-    padding: 0px 4px;
-}
 
 #divCreateChecklist header button{
     align-items:center;
     background:white; 
     font-weight:bold;
     border: none;
-    height: 20px;
-    width: 20px;
-    border-radius: 10px;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    font-size:20px;
 }
-
 #divCreateChecklist header button:hover{
     cursor: pointer;
 }
 
+#divCreateChecklist header h1{
+    font-size: 22px;
+}
+
+#dayQuantits{
+    display: flex;
+    justify-content:space-between;
+    width: 120px;
+}
+.formItemsStyle{
+    background:rgb(149,137,110);
+    color:white;
+    border: none;
+    border-radius: 5px;
+}
+
 #divCreateChecklist section{
+    padding:3px;
     overflow-y: auto;   
     grid-area: section; 
 }
+#divCreateChecklist section article{
+    font-size:18px;
+    height:80%;
+}
+#divCreateChecklist section article div{
+    display:flex;
+    flex-direction: column;
+    margin: 5px 0px;
+    margin-left: 5px;
+}
+
+#divItemButtonGroup{
+    width:100%;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    height: 15%;
+}
+
+#divItemButtonGroup div {
+    width:60px;
+    display:flex;
+    justify-content:space-between;
+}
+
+#divItemButtonGroup button{
+    display:flex;
+    align-items: center;
+}
+
+#checklistTitle{
+    display:flex;
+    flex-direction: column;
+    width: 100%; 
+}
 
 #divCreateChecklist aside{
+    font-size:18px;
     padding: 2px;
     border-right: solid 1px rgb(77, 77, 77);
     overflow-y: auto;
     grid-area: aside;
 }
 
+
 #divCreateChecklist aside div{
     border-bottom: solid 1px rgb(77, 77, 77);
     padding: 5px 0px;
 }
 
-#checklistDate{
-    display:flex;
-    flex-direction: column;
-    width: 100%; 
-}
-#checklistDate input{
-    background:rgb(149,137,110);
-    color:white;
-    border: none;
-    border-radius: 5px;
-}
 #controllerItens b{
     background:white;
     padding: 1px 5px;
     color:rgb(77, 77, 77);
     border-radius: 5px;
 }
-#scaleValue select{
-    background:rgb(149,137,110);
-    color:white;
-    border: none;
-    border-radius: 5px;
-}
 
 #divCreateChecklist footer{
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     border-top: solid 1px rgb(77, 77, 77);
     grid-area: footer;

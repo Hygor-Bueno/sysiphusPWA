@@ -1,4 +1,4 @@
-export class checklistGenerator{
+export class ChecklistGenerator{
     currentItem=1;
     template(){
         return `
@@ -6,8 +6,8 @@ export class checklistGenerator{
             <header>
                 <h1>Criar novo Checklist</h1>                
                 <div id="dayQuantits">
-                    <button type="button" class="dayQuantitsButton" id="clicked_1" data-function="uniqueClicked" data-link="dayQuantitsLabel" value="1" title="Lista de tarefas para o dia"> D </button>
-                    <button type="button" class="dayQuantitsButton" id="clicked_7" data-function="uniqueClicked" data-link="dayQuantitsLabel" value="7" title="Lista de tarefas para a semana" style="opacity:.5"> S </button>
+                    <button type="button" class="dayQuantitsButton" id="clicked_1" data-function="uniqueClicked" data-link="dayQuantitsLabel" value="01" title="Lista de tarefas para o dia"> D </button>
+                    <button type="button" class="dayQuantitsButton" id="clicked_7" data-function="uniqueClicked" data-link="dayQuantitsLabel" value="07" title="Lista de tarefas para a semana" style="opacity:.5"> S </button>
                     <button type="button" class="dayQuantitsButton" id="clicked_31" data-function="uniqueClicked" data-link="dayQuantitsLabel" value="31" title="Lista de tarefas para o mês" style="opacity:.5"> M </button>
                 </div> 
             </header>            
@@ -19,9 +19,8 @@ export class checklistGenerator{
                 <div id="controllerItens">
                     <label>Quantidade de dias: </label> 
                     </br>  
-                    <b>${this.currentItem} / <label id="dayQuantitsLabel">7</label></b> 
-                </div>
-                
+                    <b>${this.currentItem} / <label id="dayQuantitsLabel">01</label></b> 
+                </div>               
             </aside>
             <section>
                 <article>
@@ -42,6 +41,14 @@ export class checklistGenerator{
                             <option value="3">Alto</option>
                         </select>
                     </div>
+                    <div id="startTime">
+                        <label>Início (hr):</label>
+                        <input class="formItemsStyle" type="time" title="Hora inicial da tarefa" />
+                    </div>
+                    <div id="endTime">
+                        <label>Fim (hr):</label>
+                        <input class="formItemsStyle" type="time" title="Hora final da tarefa">
+                    </div>
                 </article>
                 <div id="divItemButtonGroup">
                     <button type="button" class="buttonDefualt" title="Limpar"> &#10006; </button>
@@ -58,5 +65,8 @@ export class checklistGenerator{
             </footer>
         </div>
         `
+    }
+    controllerItens(buttonDay){
+        document.getElementById(buttonDay.getAttribute('data-link')).innerText = buttonDay.value
     }
 }

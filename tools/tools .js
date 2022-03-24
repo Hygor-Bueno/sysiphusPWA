@@ -1,5 +1,6 @@
 import { Routers } from "../Routers/router.js";
 import { Utils } from "../Utils/utils.js";
+import { ChecklistGenerator } from "../Components/Checklist/checklistGenerator.js";
 
 export class SisyphusTools{
     navRouter = new Routers;
@@ -21,7 +22,9 @@ export class SisyphusTools{
                 this.navPages(element);
                 break;
             case 'uniqueClicked':{
+                let checklistGenerator = new ChecklistGenerator;
                 this.utils.selectUniqueButton(element.getAttribute("class"),element);
+                checklistGenerator.controllerItens(element);
                 break;
             }
             default:

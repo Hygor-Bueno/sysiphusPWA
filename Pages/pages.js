@@ -1,8 +1,8 @@
-import { checklistGenerator } from "../Components/Checklist/checklistGenerator.js"
+import { ChecklistGenerator } from "../Components/Checklist/checklistGenerator.js"
 
 
 export class Pages{
-    checklistGenerator = new checklistGenerator
+    checklistGenerator = new ChecklistGenerator;
     newChecklist(){
         return`
             <section id="pageNewChecklist">

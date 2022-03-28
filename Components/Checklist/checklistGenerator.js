@@ -1,5 +1,8 @@
-export class ChecklistGenerator{
+import {Checklist} from "../../Object/Checklist.js"
+
+export class ChecklistGenerator {
     currentItem = 1;
+    checklist = new Checklist;
     template(){
         return `
         <div id="divCreateChecklist">
@@ -68,5 +71,6 @@ export class ChecklistGenerator{
     }
     controllerItens(buttonDay){
         document.getElementById(buttonDay.getAttribute('data-link')).innerText = buttonDay.value
+        this.checklist.setMaxItems(parseInt(buttonDay.value));
     }
 }

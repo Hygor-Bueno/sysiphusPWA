@@ -12,8 +12,7 @@ export class SisyphusTools{
         })
     }
 
-    filterFunction(element){
-        
+    filterFunction(element){        
         switch(element.getAttribute("data-function")){
             case 'menuViewSwitch':
                 this.openOrCloseElement("#headerMenu nav");

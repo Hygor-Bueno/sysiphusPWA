@@ -1,5 +1,5 @@
 export class ChecklistGenerator{
-    currentItem=1;
+    currentItem = 1;
     template(){
         return `
         <div id="divCreateChecklist">
@@ -13,27 +13,27 @@ export class ChecklistGenerator{
             </header>            
             <aside>
                 <div id="checklistTitle">
-                    <label>Tituli do Checklist:</label>
+                    <label>Titulo do Checklist:</label>
                     <input class="formItemsStyle" type="text" title="Titulo do Checklist" />
                 </div>                    
                 <div id="controllerItens">
-                    <label>Quantidade de dias: </label> 
+                    <label>Quantidade máxima de dias: </label> 
                     </br>  
                     <b>${this.currentItem} / <label id="dayQuantitsLabel">01</label></b> 
                 </div>               
             </aside>
             <section>
                 <article>
-                    <div id="taskDescription">
-                        <label>Descrição da tarefa:</label>
+                    <div id="taskDescription" class="mandatoryItem">
+                        <label><b>* </b>Descrição da tarefa:</label>
                         <input class="formItemsStyle" type="text" title="Descrição da tarefa" />
                     </div>
-                    <div id="checklistDate">
-                        <label>Data da tarefa:</label>
+                    <div id="checklistDate" class="mandatoryItem">
+                        <label><b>* </b>Data da tarefa:</label>
                         <input class="formItemsStyle" type="date" title="data da tarefa" />
                     </div>
-                    <div id="scaleValue">
-                        <label>Dificuldade:</label>
+                    <div id="scaleValue" class="mandatoryItem">
+                        <label><b>* </b>Dificuldade:</label>
                         <select class="formItemsStyle">
                             <option value="0" hidden="true">Selecione o Nível:</option>
                             <option value="1">Fácil</option>

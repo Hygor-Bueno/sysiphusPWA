@@ -52,3 +52,8 @@ body{
 .mercuryColor{
     background:rgb(77,77,77);
 }
+/*ITENS OBRIGATÓRIOS*/
+.mandatoryItem b{
+    color: #B5001A;
+    font-size: 13px;
+}

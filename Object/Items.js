@@ -1,4 +1,4 @@
-export class ListItems{
+export class Items{
     #idItem;
     #description;
     #date;

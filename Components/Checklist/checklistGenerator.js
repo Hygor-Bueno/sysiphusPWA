@@ -1,10 +1,10 @@
 import {Checklist} from "../../Object/Checklist.js"
-import { ListItems } from "../../Object/ListItems.js";
+import { Items } from "../../Object/Items.js";
 
 export class ChecklistGenerator {
     currentItem = 1;
     checklist = new Checklist;
-    listItems = new ListItems;
+    items = new Items;
     template(){
         return `
         <div id="divCreateChecklist">

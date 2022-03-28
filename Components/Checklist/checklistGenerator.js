@@ -38,7 +38,7 @@ export class ChecklistGenerator {
                     <div id="scaleValue" class="mandatoryItem">
                         <label><b>* </b>Dificuldade:</label>
                         <select class="formItemsStyle">
-                            <option value="0" hidden="true">Selecione o Nível:</option>
+                            <option value="" hidden="true">Selecione o Nível:</option>
                             <option value="1">Fácil</option>
                             <option value="2">Médio</option>
                             <option value="3">Alto</option>
@@ -73,4 +73,5 @@ export class ChecklistGenerator {
         document.getElementById(buttonDay.getAttribute('data-link')).innerText = buttonDay.value
         this.checklist.setMaxItems(parseInt(buttonDay.value));
     }
+    
 }

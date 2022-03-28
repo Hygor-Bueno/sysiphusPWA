@@ -1,8 +1,10 @@
 import {Checklist} from "../../Object/Checklist.js"
+import { ListItems } from "../../Object/ListItems.js";
 
 export class ChecklistGenerator {
     currentItem = 1;
     checklist = new Checklist;
+    listItems = new ListItems;
     template(){
         return `
         <div id="divCreateChecklist">
@@ -22,7 +24,7 @@ export class ChecklistGenerator {
                 <div id="controllerItens">
                     <label>Quantidade máxima de dias: </label> 
                     </br>  
-                    <b>${this.currentItem} / <label id="dayQuantitsLabel">01</label></b> 
+                    <b> <label id="currentItem">${this.currentItem}</label> / <label id="dayQuantitsLabel">01</label></b> 
                 </div>               
             </aside>
             <section>
@@ -54,10 +56,10 @@ export class ChecklistGenerator {
                     </div>
                 </article>
                 <div id="divItemButtonGroup">
-                    <button type="button" class="buttonDefualt" title="Limpar"> &#10006; </button>
+                    <button type="button" class="buttonDefualt" data-function="cleanForm" title="Limpar"> &#10006; </button>
                     <div>
-                    <button type="button" class="buttonDefualt" title="Próximo"> &#8678; </button>
-                        <button type="button" class="buttonDefualt" title="Voltar"> &#8680; </button>
+                        <button type="button" class="buttonDefualt" value="back" data-function="controllerItem" title="Voltar"> &#8678; </button>
+                        <button type="button" class="buttonDefualt" value="next" data-function="controllerItem" title="Avançar"> &#8680; </button>
                     </div>
                 </div>
             </section>
@@ -73,5 +75,22 @@ export class ChecklistGenerator {
         document.getElementById(buttonDay.getAttribute('data-link')).innerText = buttonDay.value
         this.checklist.setMaxItems(parseInt(buttonDay.value));
     }
-    
+    cleanForm(local){ 
+        document.querySelectorAll(local).forEach(element=>{
+            element.value = "";
+        })
+    }
+    addCurrentItem(){ 
+        if(this.currentItem < parseInt(document.getElementById('dayQuantitsLabel').innerText)){ 
+            this.currentItem++;
+            document.getElementById('currentItem').innerText = this.currentItem;
+        }
+    }
+    backItem(){ 
+        if(this.currentItem > 1){ 
+            console.log('hã?')
+            this.currentItem--;
+            document.getElementById('currentItem').innerText = this.currentItem;
+        }
+    }
 }

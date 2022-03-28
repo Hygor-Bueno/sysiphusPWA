@@ -5,14 +5,14 @@ import { ChecklistGenerator } from "../Components/Checklist/checklistGenerator.j
 export class SisyphusTools{
     navRouter = new Routers;
     utils = new Utils;
-
+    checklistGenerator = new ChecklistGenerator;
     pageClick(){      
         document.addEventListener("click", element=>{             
             this.validateElement(element.target) && this.filterFunction(element.target);
         })
     }
 
-    filterFunction(element){        
+    filterFunction(element){       
         switch(element.getAttribute("data-function")){
             case 'menuViewSwitch':
                 this.openOrCloseElement("#headerMenu nav");
@@ -20,12 +20,17 @@ export class SisyphusTools{
             case 'navPages':
                 this.navPages(element);
                 break;
-            case 'uniqueClicked':{
-                let checklistGenerator = new ChecklistGenerator;
+            case 'uniqueClicked':
                 this.utils.selectUniqueButton(element.getAttribute("class"),element);
-                checklistGenerator.controllerItens(element);
+                this.checklistGenerator.controllerItens(element);
                 break;
-            }
+            case 'cleanForm':
+                this.checklistGenerator.cleanForm("#divCreateChecklist section article .formItemsStyle")
+                break;
+            case 'controllerItem':
+                element.value == 'next' ? this.checklistGenerator.addCurrentItem() : this.checklistGenerator.backItem();
+                
+                break;
             default:
                 console.error("Invalid data-function");
         }

@@ -29,7 +29,17 @@ export class SisyphusTools{
                 break;
             case 'controllerItem':
                 element.value == 'next' ? this.checklistGenerator.addCurrentItem() : this.checklistGenerator.backItem();
-                
+                break;
+            case 'cancelCehcklist':
+                localStorage.setItem('router_sisyphus',"home")
+                this.navRouter.router()
+                break;
+            case 'finalizeChecklist':
+                if(this.utils.itemsMandatory('.mandatoryItem')){
+                    alert("Tudo nos conformes para salvamento.")
+                }else{
+                    alert("Por favor, preencher todos os itens obrigatórios")
+                }
                 break;
             default:
                 console.error("Invalid data-function");

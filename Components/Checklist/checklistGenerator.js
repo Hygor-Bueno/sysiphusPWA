@@ -65,8 +65,8 @@ export class ChecklistGenerator {
             </section>
            
             <footer>
-                <button type="button" class="buttonDefualt"> Cancelar </button>
-                <button type="button" class="buttonDefualt"> Concluir </button> 
+                <button type="button" data-function="cancelCehcklist" class="buttonDefualt"> Cancelar </button>
+                <button type="button" data-function="finalizeChecklist" class="buttonDefualt"> Concluir </button> 
             </footer>
         </div>
         `

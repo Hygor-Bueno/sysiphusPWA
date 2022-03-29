@@ -25,7 +25,13 @@ export class ChecklistGenerator {
                     <label>Quantidade máxima de dias: </label> 
                     </br>  
                     <b> <label id="currentItem">${this.currentItem}</label> / <label id="dayQuantitsLabel">01</label></b> 
-                </div>               
+                </div>  
+                <div id="listItems">
+                    <label>Lista dos Itens:</label>
+                    <div>
+                
+                    </div>
+                </div>             
             </aside>
             <section>
                 <article>
@@ -71,6 +77,16 @@ export class ChecklistGenerator {
         </div>
         `
     }
+    setTitle(){ 
+        document.querySelector('#checklistTitle input').addEventListener('change', ()=>{
+            this.checklist.setTitle(document.querySelector('#checklistTitle input').value)
+        })
+        console.log(this.checklist.getTitle())
+    }
+    listItems(){
+        let response =  '' ;    
+        return response; 
+    }
     controllerItens(buttonDay){
         document.getElementById(buttonDay.getAttribute('data-link')).innerText = buttonDay.value
         this.checklist.setMaxItems(parseInt(buttonDay.value));
@@ -88,7 +104,6 @@ export class ChecklistGenerator {
     }
     backItem(){ 
         if(this.currentItem > 1){ 
-            console.log('hã?')
             this.currentItem--;
             document.getElementById('currentItem').innerText = this.currentItem;
         }

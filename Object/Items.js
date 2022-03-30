@@ -6,6 +6,15 @@ export class Items{
     #hourInit;
     #hourEnd;
 
+    constructor(idItem, description, date, level, hourInit, hourEnd) {
+        this.#idItem = idItem;
+        this.#description = description;
+        this.#date = date;
+        this.#level = level;
+        this.#hourInit= hourInit;
+        this.#hourEnd = hourEnd;
+    }
+
     getIdItem(){ return this.#idItem;}
     getDescription() { return this.#description; }
     getDate() { return this.#date; }

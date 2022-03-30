@@ -1,10 +1,11 @@
 import {Checklist} from "../../Object/Checklist.js"
 import { Items } from "../../Object/Items.js";
+import { Utils } from "../../Utils/utils.js";
 
 export class ChecklistGenerator {
     currentItem = 1;
-    checklist = new Checklist;
-    items = new Items;
+    checklist = new Checklist;    
+    utils = new Utils;
     template(){
         return `
         <div id="divCreateChecklist">
@@ -44,7 +45,7 @@ export class ChecklistGenerator {
                         <input class="formItemsStyle" type="date" title="data da tarefa" />
                     </div>
                     <div id="scaleValue" class="mandatoryItem">
-                        <label><b>* </b>Dificuldade:</label>
+                        <label><b>*</b>Dificuldade:</label>
                         <select class="formItemsStyle">
                             <option value="" hidden="true">Selecione o Nível:</option>
                             <option value="1">Fácil</option>
@@ -69,7 +70,6 @@ export class ChecklistGenerator {
                     </div>
                 </div>
             </section>
-           
             <footer>
                 <button type="button" data-function="cancelCehcklist" class="buttonDefualt"> Cancelar </button>
                 <button type="button" data-function="finalizeChecklist" class="buttonDefualt"> Concluir </button> 
@@ -96,10 +96,17 @@ export class ChecklistGenerator {
             element.value = "";
         })
     }
-    addCurrentItem(){ 
-        if(this.currentItem < parseInt(document.getElementById('dayQuantitsLabel').innerText)){ 
+    addCurrentItem(){        
+        let validation =this.utils.itemsMandatory('.mandatoryItem');
+        if(this.currentItem < parseInt(document.getElementById('dayQuantitsLabel').innerText) &&  validation){ 
             this.currentItem++;
             document.getElementById('currentItem').innerText = this.currentItem;
+            this.cleanForm("#divCreateChecklist section article .formItemsStyle");
+        }else  if(!validation){ 
+            alert("Por favor, preencher todos os itens obrigatórios");
+        }else{
+            console.log(this.addItem())
+            this.cleanForm("#divCreateChecklist section article .formItemsStyle");
         }
     }
     backItem(){ 
@@ -107,5 +114,16 @@ export class ChecklistGenerator {
             this.currentItem--;
             document.getElementById('currentItem').innerText = this.currentItem;
         }
+    }
+    addItem(){ 
+        let items = new Items(
+            this.currentItem,
+            document.querySelector('#taskDescription input').value,
+            document.querySelector('#checklistDate input').value,
+            document.querySelector('#scaleValue select').value,
+            document.querySelector('#startTime input').value,
+            document.querySelector('#endTime input').value
+            );
+        return items;
     }
 }

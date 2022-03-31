@@ -22,7 +22,7 @@ export class SisyphusTools{
                 break;
             case 'uniqueClicked':
                 this.utils.selectUniqueButton(element.getAttribute("class"),element);
-                this.checklistGenerator.controllerItens(element);
+                this.checklistGenerator.controllerItems(element);
                 break;
             case 'cleanForm':
                 this.checklistGenerator.cleanForm("#divCreateChecklist section article .formItemsStyle")
@@ -36,7 +36,7 @@ export class SisyphusTools{
                 break;
             case 'finalizeChecklist':
                 if(this.utils.itemsMandatory('.mandatoryItem')){
-                    alert("Tudo nos conformes para salvamento.")
+                   this.checklistGenerator.finalizeChecklist();
                 }else{
                     alert("Por favor, preencher todos os itens obrigatórios")
                 }

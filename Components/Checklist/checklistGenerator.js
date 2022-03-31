@@ -87,7 +87,7 @@ export class ChecklistGenerator {
         let response =  '' ;    
         return response; 
     }
-    controllerItens(buttonDay){
+    controllerItems(buttonDay){
         document.getElementById(buttonDay.getAttribute('data-link')).innerText = buttonDay.value
         this.checklist.setMaxItems(parseInt(buttonDay.value));
     }
@@ -97,18 +97,28 @@ export class ChecklistGenerator {
         })
     }
     addCurrentItem(){        
-        let validation =this.utils.itemsMandatory('.mandatoryItem');
-        if(this.currentItem < parseInt(document.getElementById('dayQuantitsLabel').innerText) &&  validation){ 
-            this.currentItem++;
-            document.getElementById('currentItem').innerText = this.currentItem;
-            this.cleanForm("#divCreateChecklist section article .formItemsStyle");
-        }else  if(!validation){ 
-            alert("Por favor, preencher todos os itens obrigatórios");
+        if(this.currentItem != parseInt(document.getElementById('dayQuantitsLabel').innerText)){
+            let validation =this.utils.itemsMandatory('.mandatoryItem');
+            if(this.currentItem < parseInt(document.getElementById('dayQuantitsLabel').innerText) &&  validation){ 
+                this.addItemList("#divCreateChecklist section article .formItemsStyle")
+                this.currentItem++;
+                document.getElementById('currentItem').innerText = this.currentItem;
+                this.cleanForm("#divCreateChecklist section article .formItemsStyle");
+                console.log(this.checklist) 
+            }else  if(!validation){ 
+                alert("Por favor, preencher todos os itens obrigatórios");
+            }
         }else{
-            console.log(this.addItem())
-            this.cleanForm("#divCreateChecklist section article .formItemsStyle");
+            alert(' Ops ! \n limite máximo de itens atingida. \n Por favor clicar em "Concluir"')
         }
     }
+
+    addItemList(cleanLocal){
+        let addItem = this.addItem()
+        this.checklist.addItemList(addItem.getIdItem(), addItem)             
+        this.cleanForm(cleanLocal);
+    }
+
     backItem(){ 
         if(this.currentItem > 1){ 
             this.currentItem--;
@@ -125,5 +135,12 @@ export class ChecklistGenerator {
             document.querySelector('#endTime input').value
             );
         return items;
+    }
+    finalizeChecklist(){ 
+        this.addItemList('.formItemsStyle')
+        document.getElementById('currentItem').innerText=1;
+        document.getElementById('clicked_1').click();
+
+        console.log(this.checklist)
     }
 }

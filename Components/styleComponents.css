@@ -231,10 +231,11 @@
     border: none;
 }
 #divCreateChecklist aside #listItems div{
-    flex-grow: 1;
+    height: 100px;
     overflow-y: auto;
     border: none;
 }
+
 #controllerItens b {
     background: white;
     padding: 1px 5px;

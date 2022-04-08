@@ -6,6 +6,7 @@ export class ChecklistGenerator {
     currentItem = 1;
     checklist = new Checklist;    
     utils = new Utils;
+
     template(){
         return `
         <div id="divCreateChecklist">
@@ -23,14 +24,14 @@ export class ChecklistGenerator {
                     <input class="formItemsStyle" type="text" title="Titulo do Checklist" />
                 </div>                    
                 <div id="controllerItens">
-                    <label>Quantidade máxima de dias: </label> 
+                    <label>Quantidade máxima de dias/itens: </label> 
                     </br>  
                     <b> <label id="currentItem">${this.currentItem}</label> / <label id="dayQuantitsLabel">01</label></b> 
                 </div>  
                 <div id="listItems">
                     <label>Lista dos Itens:</label>
                     <div>
-                
+
                     </div>
                 </div>             
             </aside>
@@ -45,7 +46,7 @@ export class ChecklistGenerator {
                         <input class="formItemsStyle" type="date" title="data da tarefa" />
                     </div>
                     <div id="scaleValue" class="mandatoryItem">
-                        <label><b>*</b>Dificuldade:</label>
+                        <label><b>* </b>Dificuldade:</label>
                         <select class="formItemsStyle">
                             <option value="" hidden="true">Selecione o Nível:</option>
                             <option value="1">Fácil</option>
@@ -77,6 +78,16 @@ export class ChecklistGenerator {
         </div>
         `
     }
+
+    templateItemList(checklist){
+        let response = "";
+        let items = checklist.getListItems();
+        Object.keys(items).forEach(element => {
+            response += `<li>${items[element].getDescription()}</li>`
+        });
+        return `<ol type=1> ${response} </ol>`
+    }
+
     setTitle(){ 
         document.querySelector('#checklistTitle input').addEventListener('change', ()=>{
             this.checklist.setTitle(document.querySelector('#checklistTitle input').value)
@@ -88,19 +99,25 @@ export class ChecklistGenerator {
         return response; 
     }
     controllerItems(buttonDay){
-        document.getElementById(buttonDay.getAttribute('data-link')).innerText = buttonDay.value
-        this.checklist.setMaxItems(parseInt(buttonDay.value));
+        let response = false;
+        if(this.currentItem <= buttonDay.value){
+            document.getElementById(buttonDay.getAttribute('data-link')).innerText = buttonDay.value
+            this.checklist.setMaxItems(parseInt(buttonDay.value));
+            response= true;
+        }
+        return response;
     }
     cleanForm(local){ 
         document.querySelectorAll(local).forEach(element=>{
             element.value = "";
         })
     }
-    addCurrentItem(){        
-        if(this.currentItem != parseInt(document.getElementById('dayQuantitsLabel').innerText)){
+    addCurrentItem(){  
+        let maxItem = parseInt(document.getElementById('dayQuantitsLabel').innerText);     
+        if(this.currentItem != maxItem){
             let validation =this.utils.itemsMandatory('.mandatoryItem');
-            if(this.currentItem < parseInt(document.getElementById('dayQuantitsLabel').innerText) &&  validation){ 
-                this.addItemList("#divCreateChecklist section article .formItemsStyle")
+            if(this.currentItem < maxItem &&  validation){ 
+                this.addItemList()
                 this.currentItem++;
                 document.getElementById('currentItem').innerText = this.currentItem;
                 this.cleanForm("#divCreateChecklist section article .formItemsStyle");
@@ -113,10 +130,14 @@ export class ChecklistGenerator {
         }
     }
 
-    addItemList(cleanLocal){
+    addItemList(){
         let addItem = this.addItem()
-        this.checklist.addItemList(addItem.getIdItem(), addItem)             
-        this.cleanForm(cleanLocal);
+        this.checklist.addItemList(addItem.getIdItem(), addItem)            
+        this.addItemListHtml();
+    }
+    addItemListHtml(){ 
+        document.querySelector('#listItems div').innerHTML = "";
+        document.querySelector('#listItems div').insertAdjacentHTML('beforeend',this.templateItemList(this.checklist))
     }
 
     backItem(){ 
@@ -137,10 +158,12 @@ export class ChecklistGenerator {
         return items;
     }
     finalizeChecklist(){ 
-        this.addItemList('.formItemsStyle')
+        this.addCurrentItem()
+        this.currentItem = 1;
         document.getElementById('currentItem').innerText=1;
         document.getElementById('clicked_1').click();
-
-        console.log(this.checklist)
+        document.querySelector('#listItems div').innerHTML = ""
+        this.checklist= new Checklist;
+        this.cleanForm('.formItemsStyle');
     }
 }

@@ -115,18 +115,20 @@ export class ChecklistGenerator {
     addCurrentItem(){  
         let maxItem = parseInt(document.getElementById('dayQuantitsLabel').innerText);     
         if(this.currentItem != maxItem){
-            let validation =this.utils.itemsMandatory('.mandatoryItem');
-            if(this.currentItem < maxItem &&  validation){ 
-                this.addItemList()
-                this.currentItem++;
-                document.getElementById('currentItem').innerText = this.currentItem;
-                this.cleanForm("#divCreateChecklist section article .formItemsStyle");
-                console.log(this.checklist) 
-            }else  if(!validation){ 
-                alert("Por favor, preencher todos os itens obrigatórios");
-            }
+            this.saveItem(maxItem);
         }else{
             alert(' Ops ! \n limite máximo de itens atingida. \n Por favor clicar em "Concluir"')
+        }
+    }
+    saveItem(maxItem){
+        let validation =this.utils.itemsMandatory('.mandatoryItem');
+        if(this.currentItem <= maxItem &&  validation){ 
+            this.addItemList()
+            this.currentItem++;
+            document.getElementById('currentItem').innerText = this.currentItem;
+            this.cleanForm("#divCreateChecklist section article .formItemsStyle");
+        }else  if(!validation){ 
+            alert("Por favor, preencher todos os itens obrigatórios");
         }
     }
 
@@ -158,7 +160,7 @@ export class ChecklistGenerator {
         return items;
     }
     finalizeChecklist(){ 
-        this.addCurrentItem()
+        this.saveItem(parseInt(document.getElementById('dayQuantitsLabel').innerText))
         this.currentItem = 1;
         document.getElementById('currentItem').innerText=1;
         document.getElementById('clicked_1').click();

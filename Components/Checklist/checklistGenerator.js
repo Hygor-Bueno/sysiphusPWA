@@ -162,12 +162,14 @@ export class ChecklistGenerator {
     finalizeChecklist(){ 
         this.saveItem(parseInt(document.getElementById('dayQuantitsLabel').innerText));
         this.checklist.setTitle(document.querySelector('#checklistTitle input').value);
-        console.log(this.checklist)
+        this.cleanFormGeneral();
+        this.cleanForm('.formItemsStyle');
+    }
+    cleanFormGeneral(){ 
         this.currentItem = 1;
         document.getElementById('currentItem').innerText=1;
         document.getElementById('clicked_1').click();
         document.querySelector('#listItems div').innerHTML = ""
         this.checklist= new Checklist;
-        this.cleanForm('.formItemsStyle');
     }
 }

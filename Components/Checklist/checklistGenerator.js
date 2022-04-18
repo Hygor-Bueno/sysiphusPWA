@@ -160,7 +160,9 @@ export class ChecklistGenerator {
         return items;
     }
     finalizeChecklist(){ 
-        this.saveItem(parseInt(document.getElementById('dayQuantitsLabel').innerText))
+        this.saveItem(parseInt(document.getElementById('dayQuantitsLabel').innerText));
+        this.checklist.setTitle(document.querySelector('#checklistTitle input').value);
+        console.log(this.checklist)
         this.currentItem = 1;
         document.getElementById('currentItem').innerText=1;
         document.getElementById('clicked_1').click();

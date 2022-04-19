@@ -1,6 +1,6 @@
 export class Checklist{
     #title;
-    #maxItems;
+    #maxItems=1;
     #listItems={};
     
     getTitle() { return this.#title; }
@@ -13,5 +13,12 @@ export class Checklist{
 
     addItemList(key,value){
         this.#listItems[key] = value;
+    }
+    returnCheckslist(){
+        return {
+            title: this.#title,
+            maxItems: this.#maxItems,
+            listItems: this.#listItems
+        }
     }
 }

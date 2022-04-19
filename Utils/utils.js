@@ -13,4 +13,13 @@ export class Utils{
         })
         return response;
     }
+    highestValue(items){ 
+        let aux = 0;
+        items.forEach(item => {
+            if(item > aux){
+                aux = item;
+            }
+        })
+        return aux;
+    }
 }

@@ -113,16 +113,15 @@ export class ChecklistGenerator {
         })
     }
     addCurrentItem(){  
-        let maxItem = parseInt(document.getElementById('dayQuantitsLabel').innerText);     
-        if(this.currentItem != maxItem){
-            this.saveItem(maxItem);
+        if(this.currentItem != this.checklist.getMaxItems()){
+            this.saveItem();
         }else{
             alert(' Ops ! \n limite máximo de itens atingida. \n Por favor clicar em "Concluir"')
         }
     }
-    saveItem(maxItem){
+    saveItem(){
         let validation =this.utils.itemsMandatory('.mandatoryItem');
-        if(this.currentItem <= maxItem &&  validation){ 
+        if(this.currentItem <= this.checklist.getMaxItems() &&  validation){ 
             this.addItemList()
             this.currentItem++;
             document.getElementById('currentItem').innerText = this.currentItem;
@@ -134,12 +133,12 @@ export class ChecklistGenerator {
 
     addItemList(){
         let addItem = this.addItem()
-        this.checklist.addItemList(addItem.getIdItem(), addItem)            
+        this.checklist.addItemList(addItem.getIdItem(), addItem.returnItem())            
         this.addItemListHtml();
     }
     addItemListHtml(){ 
         document.querySelector('#listItems div').innerHTML = "";
-        document.querySelector('#listItems div').insertAdjacentHTML('beforeend',this.templateItemList(this.checklist))
+        //document.querySelector('#listItems div').insertAdjacentHTML('beforeend',this.templateItemList(this.checklist))
     }
 
     backItem(){ 
@@ -162,8 +161,20 @@ export class ChecklistGenerator {
     finalizeChecklist(){ 
         this.saveItem(parseInt(document.getElementById('dayQuantitsLabel').innerText));
         this.checklist.setTitle(document.querySelector('#checklistTitle input').value);
+        this.saveChecklist();
+        
         this.cleanFormGeneral();
         this.cleanForm('.formItemsStyle');
+    }
+    saveChecklist(){
+        let listChecklist = JSON.parse(localStorage.getItem('data_sisyphus')) || "";
+        if(listChecklist){
+           let lastId=  parseInt(this.utils.highestValue(Object.keys(listChecklist))) +1
+           listChecklist[lastId] = this.checklist.returnCheckslist();
+           localStorage.setItem('data_sisyphus',JSON.stringify(listChecklist));
+        }else{
+            localStorage.setItem('data_sisyphus',JSON.stringify({1:this.checklist.returnCheckslist()}))
+        }
     }
     cleanFormGeneral(){ 
         this.currentItem = 1;

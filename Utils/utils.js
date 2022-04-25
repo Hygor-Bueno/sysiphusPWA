@@ -22,4 +22,18 @@ export class Utils{
         })
         return aux;
     }
+    minutesForHour(minutes) {
+        const hour = Math.floor(minutes / 60);
+        const min = minutes % 60;
+        const textHour = (`00${hour}`).slice(-2);
+        const textMinutes = (`00${min}`).slice(-2);
+
+        return `${textHour}:${textMinutes}`;
+    }
+    hourForMinutes(hour) {
+        let HHmm = hour.split(":");
+        let validHour = HHmm[0] == '00' ? 24 : HHmm[0]
+        let reponse = (( Number(validHour) * 60 ) + Number(HHmm[1]));
+        return reponse;
+    }
 }

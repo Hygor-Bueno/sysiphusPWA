@@ -1,13 +1,13 @@
-import {Checklist} from "../../Object/Checklist.js"
+import { Checklist } from "../../Object/Checklist.js"
 import { Items } from "../../Object/Items.js";
 import { Utils } from "../../Utils/utils.js";
 
 export class ChecklistGenerator {
     currentItem = 1;
-    checklist = new Checklist;    
+    checklist = new Checklist;
     utils = new Utils;
 
-    template(){
+    template() {
         return `
         <div id="divCreateChecklist">
             <header>
@@ -79,75 +79,76 @@ export class ChecklistGenerator {
         `
     }
 
-    templateItemList(checklist){
+    templateItemList(checklist) {
         let response = "";
         let items = checklist.getListItems();
         Object.keys(items).forEach(element => {
-            response += `<li>${items[element].getDescription()}</li>`
+            response += `<li>${items[element].description}</li>`
         });
         return `<ol type=1> ${response} </ol>`
     }
 
-    setTitle(){ 
-        document.querySelector('#checklistTitle input').addEventListener('change', ()=>{
+    setTitle() {
+        document.querySelector('#checklistTitle input').addEventListener('change', () => {
             this.checklist.setTitle(document.querySelector('#checklistTitle input').value)
         })
         console.log(this.checklist.getTitle())
     }
-    listItems(){
-        let response =  '' ;    
-        return response; 
+    listItems() {
+        let response = '';
+        return response;
     }
-    controllerItems(buttonDay){
+    controllerItems(buttonDay) {
         let response = false;
-        if(this.currentItem <= buttonDay.value){
+        if (this.currentItem <= buttonDay.value) {
             document.getElementById(buttonDay.getAttribute('data-link')).innerText = buttonDay.value
             this.checklist.setMaxItems(parseInt(buttonDay.value));
-            response= true;
+            response = true;
         }
         return response;
     }
-    cleanForm(local){ 
-        document.querySelectorAll(local).forEach(element=>{
+    cleanForm(local) {
+        document.querySelectorAll(local).forEach(element => {
             element.value = "";
         })
     }
-    addCurrentItem(){  
-        if(this.currentItem != this.checklist.getMaxItems()){
+    addCurrentItem() {
+        if (this.currentItem != this.checklist.getMaxItems()) {
             this.saveItem();
-        }else{
+        } else {
             alert(' Ops ! \n limite máximo de itens atingida. \n Por favor clicar em "Concluir"')
         }
     }
-    saveItem(){
-        let validation =this.utils.itemsMandatory('.mandatoryItem');
-        if(this.currentItem <= this.checklist.getMaxItems() &&  validation){ 
+    saveItem() {
+        let validation = this.utils.itemsMandatory('.mandatoryItem');
+        if (this.currentItem <= this.checklist.getMaxItems() && validation) {
             this.addItemList()
             this.currentItem++;
             document.getElementById('currentItem').innerText = this.currentItem;
             this.cleanForm("#divCreateChecklist section article .formItemsStyle");
-        }else  if(!validation){ 
+        } else if (!validation) {
             alert("Por favor, preencher todos os itens obrigatórios");
         }
     }
 
-    addItemList(){
+    addItemList() {
         let addItem = this.addItem()
-        this.checklist.addItemList(addItem.getIdItem(), addItem.returnItem())            
+        this.checklist.addItemList(addItem.getIdItem(), addItem.returnItem())
         this.addItemListHtml();
+        console.log(this.teste(), ' <== ')
     }
-    addItemListHtml(){ 
+    addItemListHtml() {
         document.querySelector('#listItems div').innerHTML = "";
-        //document.querySelector('#listItems div').insertAdjacentHTML('beforeend',this.templateItemList(this.checklist))
+        document.querySelector('#listItems div').insertAdjacentHTML('beforeend', this.templateItemList(this.checklist))
     }
 
-    backItem(){ 
-        if(this.currentItem > 1){ 
+    backItem() {
+        if (this.currentItem > 1) {
             this.currentItem--;
             document.getElementById('currentItem').innerText = this.currentItem;
         }
     }
-    addItem(){ 
+    addItem() {
         let items = new Items(
             this.currentItem,
             document.querySelector('#taskDescription input').value,
@@ -155,32 +156,33 @@ export class ChecklistGenerator {
             document.querySelector('#scaleValue select').value,
             document.querySelector('#startTime input').value,
             document.querySelector('#endTime input').value
-            );
+        );
         return items;
     }
-    finalizeChecklist(){ 
+    finalizeChecklist() {
         this.saveItem(parseInt(document.getElementById('dayQuantitsLabel').innerText));
         this.checklist.setTitle(document.querySelector('#checklistTitle input').value);
         this.saveChecklist();
-        
+        console.log(JSON.parse(localStorage.getItem('data_sisyphus')))
         this.cleanFormGeneral();
         this.cleanForm('.formItemsStyle');
     }
-    saveChecklist(){
+    saveChecklist() {
         let listChecklist = JSON.parse(localStorage.getItem('data_sisyphus')) || "";
-        if(listChecklist){
-           let lastId=  parseInt(this.utils.highestValue(Object.keys(listChecklist))) +1
-           listChecklist[lastId] = this.checklist.returnCheckslist();
-           localStorage.setItem('data_sisyphus',JSON.stringify(listChecklist));
-        }else{
-            localStorage.setItem('data_sisyphus',JSON.stringify({1:this.checklist.returnCheckslist()}))
+        if (listChecklist) {
+            let lastId = parseInt(this.utils.highestValue(Object.keys(listChecklist))) + 1
+            listChecklist[lastId] = this.checklist.returnCheckslist();
+            localStorage.setItem('data_sisyphus', JSON.stringify(listChecklist));
+        } else {
+            localStorage.setItem('data_sisyphus', JSON.stringify({ 1: this.checklist.returnCheckslist() }))
         }
     }
-    cleanFormGeneral(){ 
+    cleanFormGeneral() {
         this.currentItem = 1;
-        document.getElementById('currentItem').innerText=1;
+        document.getElementById('currentItem').innerText = 1;
         document.getElementById('clicked_1').click();
         document.querySelector('#listItems div').innerHTML = ""
-        this.checklist= new Checklist;
+        this.checklist = new Checklist;
     }
+
 }

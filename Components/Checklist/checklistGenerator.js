@@ -135,7 +135,6 @@ export class ChecklistGenerator {
         let addItem = this.addItem()
         this.checklist.addItemList(addItem.getIdItem(), addItem.returnItem())
         this.addItemListHtml();
-        console.log(this.teste(), ' <== ')
     }
     addItemListHtml() {
         document.querySelector('#listItems div').innerHTML = "";
@@ -163,7 +162,6 @@ export class ChecklistGenerator {
         this.saveItem(parseInt(document.getElementById('dayQuantitsLabel').innerText));
         this.checklist.setTitle(document.querySelector('#checklistTitle input').value);
         this.saveChecklist();
-        console.log(JSON.parse(localStorage.getItem('data_sisyphus')))
         this.cleanFormGeneral();
         this.cleanForm('.formItemsStyle');
     }
@@ -184,5 +182,4 @@ export class ChecklistGenerator {
         document.querySelector('#listItems div').innerHTML = ""
         this.checklist = new Checklist;
     }
-
 }

@@ -270,3 +270,17 @@
 #divListChecklist header h1{
     font-size: 22px;
 }
+#divListChecklist ol{  
+    display: flex;
+    flex-direction:column;
+    padding: 0px;
+}
+
+#divListChecklist ol li{
+    display: flex;   
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px rgb(77, 77, 77);
+    margin:5px;
+    font-size: 20px;
+}

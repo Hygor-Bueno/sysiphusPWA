@@ -168,7 +168,9 @@ export class ChecklistGenerator {
     saveChecklist() {
         let listChecklist = JSON.parse(localStorage.getItem('data_sisyphus')) || "";
         if (listChecklist) {
+
             let lastId = parseInt(this.utils.highestValue(Object.keys(listChecklist))) + 1
+            console.log(lastId,parseInt(this.utils.highestValue(Object.keys(listChecklist))))
             listChecklist[lastId] = this.checklist.returnCheckslist();
             localStorage.setItem('data_sisyphus', JSON.stringify(listChecklist));
         } else {

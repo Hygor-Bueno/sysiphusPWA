@@ -1,11 +1,13 @@
 import { Routers } from "../Routers/router.js";
 import { Utils } from "../Utils/utils.js";
 import { ChecklistGenerator } from "../Components/Checklist/checklistGenerator.js";
+import { ListChecklist } from "../Components/Checklist/listChecklist.js";
 
 export class SisyphusTools {
     navRouter = new Routers;
     utils = new Utils;
     checklistGenerator = new ChecklistGenerator;
+    listChecklist = new ListChecklist;
     pageClick() {
         document.addEventListener("click", element => {
             this.validateElement(element.target) && this.filterFunction(element.target);
@@ -40,9 +42,13 @@ export class SisyphusTools {
             case 'finalizeChecklist':
                 if (this.utils.itemsMandatory('.mandatoryItem')) {
                     this.checklistGenerator.finalizeChecklist();
+                    this.listChecklist.reloadList();
                 } else {
                     alert("Por favor, preencher todos os itens obrigatórios")
                 }
+                break;
+            case 'deleteChecklist':
+                this.listChecklist.deleteChecklist(element.value);
                 break;
             default:
                 console.error("Invalid data-function");

@@ -16,10 +16,11 @@ export class Utils{
     highestValue(items){ 
         let aux = 0;
         items.forEach(item => {
-            if(item > aux){
+            if(parseInt(item) > aux){
                 aux = item;
             }
         })
+        
         return aux;
     }
     minutesForHour(minutes) {

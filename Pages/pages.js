@@ -1,8 +1,11 @@
 import { ChecklistGenerator } from "../Components/Checklist/checklistGenerator.js"
+import { ListChecklist } from "../Components/Checklist/listChecklist.js";
 
 
 export class Pages{
     checklistGenerator = new ChecklistGenerator;
+    listChecklist = new ListChecklist;
+
     newChecklist(){
         return`
             <section id="pageNewChecklist">
@@ -10,7 +13,7 @@ export class Pages{
                     ${this.checklistGenerator.template()}
                 </div>
                 <div id="viewChecklist">
-                    <h1>Ferramenta para vizualizar os checklists criados</h1>
+                    ${this.listChecklist.template()}
                 </div>
             </section>
         `

@@ -110,12 +110,12 @@
 #divCreateChecklist {
     display: grid;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 40px auto 40px;
     grid-template-areas:
-        "header header header"
-        "aside section section"
-        "footer footer footer";
+        "header header header header header"
+        "aside aside section  section section"
+        "footer footer footer footer footer";
     flex-grow: 1;
     background: rgba(77, 77, 77, .2);
     border-radius: 5px;
@@ -210,6 +210,7 @@
 #divCreateChecklist aside {
     display:flex;
     flex-direction: column;
+    align-items: center;
     font-size: 18px;
     padding: 2px;
     border-right: solid 1px rgb(77, 77, 77);
@@ -226,15 +227,17 @@
 #divCreateChecklist aside #listItems {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     border: none;
+    width: 100%;
 }
 #divCreateChecklist aside #listItems div{
     height: 100px;
     overflow-y: auto;
     border: none;
 }
-
+#controllerItens{
+    width: 100%;
+}
 #controllerItens b {
     background: white;
     padding: 1px 5px;
@@ -290,4 +293,16 @@
     width:20px;
     height:20px;
     font-size: 15px;
+}
+
+#buttonNextDay{
+    font-size: 25px;
+    margin:0px; 
+    padding:0px;
+    height: 30px;
+    width: 30px;
+    border-radius:15px;
+    display: flex;
+    align-items: center; 
+    justify-content:center;
 }

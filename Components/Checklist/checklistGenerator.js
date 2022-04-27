@@ -22,27 +22,22 @@ export class ChecklistGenerator {
                 <div id="checklistTitle">
                     <label>Titulo do Checklist:</label>
                     <input class="formItemsStyle" type="text" title="Titulo do Checklist" />
-                </div>                    
+                </div> 
+                <div id="checklistDate" class="mandatoryItem">
+                        <label><b>* </b>Data da tarefa:</label>
+                        <input class="formItemsStyle" type="date" title="data da tarefa" />
+                </div>                   
                 <div id="controllerItens">
-                    <label>Quantidade máxima de dias/itens: </label> 
+                    <label>Qtd. máx. de dias: </label> 
                     </br>  
                     <b> <label id="currentItem">${this.currentItem}</label> / <label id="dayQuantitsLabel">01</label></b> 
                 </div>  
                 <div id="listItems">
                     <label>Lista dos Itens:</label>
                     <div>
-
                     </div>
-                </div>    
-                <div id="divItemButtonGroup">
-                    <button type="button" class="buttonDefualt" data-function="cleanForm" title="Limpar"> &#10006; </button>
-                    <button type="button" class="buttonDefualt" value="next" data-function="controllerItem" title="Avançar"> &#8680; </button>
-                    <!--
-                    <div>
-                     <button type="button" class="buttonDefualt" value="back" data-function="controllerItem" title="Voltar"> &#8678; </button> 
-                    </div>
-                    -->
-                </div>         
+                </div>          
+                <button type="button" id="buttonNextDay" class="buttonDefualt" value="next" data-function="nextDay" title="Avançar"> &#10149; </button>                  
             </aside>
             <section>
                 <article>
@@ -50,10 +45,7 @@ export class ChecklistGenerator {
                         <label><b>* </b>Descrição da tarefa:</label>
                         <input class="formItemsStyle" type="text" title="Descrição da tarefa" />
                     </div>
-                    <div id="checklistDate" class="mandatoryItem">
-                        <label><b>* </b>Data da tarefa:</label>
-                        <input class="formItemsStyle" type="date" title="data da tarefa" />
-                    </div>
+                    
                     <div id="scaleValue" class="mandatoryItem">
                         <label><b>* </b>Dificuldade:</label>
                         <select class="formItemsStyle">
@@ -72,7 +64,10 @@ export class ChecklistGenerator {
                         <input class="formItemsStyle" type="time" title="Hora final da tarefa">
                     </div>
                 </article>
-                
+                <div id="divItemButtonGroup">
+                    <button type="button" class="buttonDefualt" data-function="cleanForm" title="Limpar"> &#10006; </button>
+                    <button type="button" class="buttonDefualt" value="next" data-function="controllerItem" title="Avançar">&#10132;</button>
+                </div>   
             </section>
             <footer>
                 <button type="button" data-function="cancelCehcklist" class="buttonDefualt"> Cancelar </button>
@@ -122,12 +117,16 @@ export class ChecklistGenerator {
             alert(' Ops ! \n limite máximo de itens atingida. \n Por favor clicar em "Concluir"')
         }
     }
-    saveItem() {
-        let validation = this.utils.itemsMandatory('.mandatoryItem');
-        if (this.currentItem <= this.checklist.getMaxItems() && validation) {
-            this.addItemList()
+    nextDay(){
+        if (this.currentItem < this.checklist.getMaxItems()){
             this.currentItem++;
             document.getElementById('currentItem').innerText = this.currentItem;
+        }
+    }
+    saveItem() {
+        let validation = this.utils.itemsMandatory('.mandatoryItem');
+        if( validation) {
+            this.addItemList()            
             this.cleanForm("#divCreateChecklist section article .formItemsStyle");
         } else if (!validation) {
             alert("Por favor, preencher todos os itens obrigatórios");

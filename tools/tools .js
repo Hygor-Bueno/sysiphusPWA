@@ -32,6 +32,9 @@ export class SisyphusTools {
             case 'cleanForm':
                 this.checklistGenerator.cleanForm("#divCreateChecklist section article .formItemsStyle")
                 break;
+            case 'nextDay':
+                this.checklistGenerator.nextDay()
+                break;
             case 'controllerItem':
                 element.value == 'next' ? this.checklistGenerator.addCurrentItem() : this.checklistGenerator.backItem();
                 break;

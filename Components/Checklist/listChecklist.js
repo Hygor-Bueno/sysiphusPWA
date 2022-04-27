@@ -12,7 +12,8 @@ export class ListChecklist{
         `   
     }
     list(){ 
-        if(localStorage.getItem('localStorage')){
+        if(localStorage.getItem('data_sisyphus')){
+            
             let listChecklist = JSON.parse(localStorage.data_sisyphus);
             let response = "";
             Object.keys(listChecklist).forEach(key => {

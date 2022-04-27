@@ -4,6 +4,7 @@ import { Utils } from "../../Utils/utils.js";
 
 export class ChecklistGenerator {
     currentItem = 1;
+    taskId=1;
     checklist = new Checklist;
     utils = new Utils;
 
@@ -35,6 +36,8 @@ export class ChecklistGenerator {
                 <div id="listItems">
                     <label>Lista dos Itens:</label>
                     <div>
+                        <ol>
+                        </ol>
                     </div>
                 </div>          
                 <button type="button" id="buttonNextDay" class="buttonDefualt" value="next" data-function="nextDay" title="Avançar"> &#10149; </button>                  
@@ -77,24 +80,14 @@ export class ChecklistGenerator {
         `
     }
 
-    templateItemList(checklist) {
-        let response = "";
-        let items = checklist.getListItems();
-        Object.keys(items).forEach(element => {
-            response += `<li>${items[element].description}</li>`
-        });
-        return `<ol type=1> ${response} </ol>`
+    templateItemList(item) {   
+        document.querySelector('#listItems div ol').insertAdjacentHTML('beforeend',`<li>${item}</li>`) 
     }
 
     setTitle() {
         document.querySelector('#checklistTitle input').addEventListener('change', () => {
             this.checklist.setTitle(document.querySelector('#checklistTitle input').value)
         })
-        console.log(this.checklist.getTitle())
-    }
-    listItems() {
-        let response = '';
-        return response;
     }
     controllerItems(buttonDay) {
         let response = false;
@@ -111,21 +104,23 @@ export class ChecklistGenerator {
         })
     }
     addCurrentItem() {
-        if (this.currentItem != this.checklist.getMaxItems()) {
-            this.saveItem();
-        } else {
-            alert(' Ops ! \n limite máximo de itens atingida. \n Por favor clicar em "Concluir"')
-        }
+            this.saveItem();    
     }
     nextDay(){
-        if (this.currentItem < this.checklist.getMaxItems()){
+        if (this.currentItem < this.checklist.getMaxItems() && document.querySelector('#listItems div ol li')){
             this.currentItem++;
             document.getElementById('currentItem').innerText = this.currentItem;
+            document.querySelector('#listItems div ol').innerHTML = "";
+            this.cleanForm('#checklistDate input');
+        }else if(this.currentItem >= this.checklist.getMaxItems() && document.querySelector('#listItems div ol li') ){ 
+            alert(' Ops ! \n limite máximo de itens atingida. \n Por favor clicar em "Concluir"')
+        }else{
+            alert('Para ir para o próximo dia, adicione ao menos um item.')
         }
     }
     saveItem() {
         let validation = this.utils.itemsMandatory('.mandatoryItem');
-        if( validation) {
+        if(validation) {
             this.addItemList()            
             this.cleanForm("#divCreateChecklist section article .formItemsStyle");
         } else if (!validation) {
@@ -136,11 +131,8 @@ export class ChecklistGenerator {
     addItemList() {
         let addItem = this.addItem()
         this.checklist.addItemList(addItem.getIdItem(), addItem.returnItem())
-        this.addItemListHtml();
-    }
-    addItemListHtml() {
-        document.querySelector('#listItems div').innerHTML = "";
-        document.querySelector('#listItems div').insertAdjacentHTML('beforeend', this.templateItemList(this.checklist))
+        this.templateItemList(addItem.getDescription());
+        this.taskId++;
     }
 
     backItem() {
@@ -151,7 +143,7 @@ export class ChecklistGenerator {
     }
     addItem() {
         let items = new Items(
-            this.currentItem,
+            this.taskId,
             document.querySelector('#taskDescription input').value,
             document.querySelector('#checklistDate input').value,
             document.querySelector('#scaleValue select').value,
@@ -161,8 +153,8 @@ export class ChecklistGenerator {
         return items;
     }
     finalizeChecklist() {
-        this.saveItem(parseInt(document.getElementById('dayQuantitsLabel').innerText));
         this.checklist.setTitle(document.querySelector('#checklistTitle input').value);
+        console.log(this.checklist)
         this.saveChecklist();
         this.cleanFormGeneral();
         this.cleanForm('.formItemsStyle');
@@ -170,9 +162,7 @@ export class ChecklistGenerator {
     saveChecklist() {
         let listChecklist = JSON.parse(localStorage.getItem('data_sisyphus')) || "";
         if (listChecklist) {
-
             let lastId = parseInt(this.utils.highestValue(Object.keys(listChecklist))) + 1
-            console.log(lastId,parseInt(this.utils.highestValue(Object.keys(listChecklist))))
             listChecklist[lastId] = this.checklist.returnCheckslist();
             localStorage.setItem('data_sisyphus', JSON.stringify(listChecklist));
         } else {
@@ -183,7 +173,7 @@ export class ChecklistGenerator {
         this.currentItem = 1;
         document.getElementById('currentItem').innerText = 1;
         document.getElementById('clicked_1').click();
-        document.querySelector('#listItems div').innerHTML = ""
+        document.querySelector('#listItems div ol').innerHTML = ""
         this.checklist = new Checklist;
     }
 }

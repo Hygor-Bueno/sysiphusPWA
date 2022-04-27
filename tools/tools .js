@@ -25,7 +25,7 @@ export class SisyphusTools {
             case 'uniqueClicked':
                 if (this.checklistGenerator.controllerItems(element)) {
                     this.utils.selectUniqueButton(element.getAttribute("class"), element);
-                }else{
+                } else {
                     alert("Ops, Quantidade de Item ultrapassa a quantidade máxima de dias selecionados.")
                 }
                 break;
@@ -43,12 +43,10 @@ export class SisyphusTools {
                 this.navRouter.router()
                 break;
             case 'finalizeChecklist':
-                if (this.utils.itemsMandatory('.mandatoryItem')) {
-                    this.checklistGenerator.finalizeChecklist();
-                    this.listChecklist.reloadList();
-                } else {
-                    alert("Por favor, preencher todos os itens obrigatórios")
-                }
+
+                this.checklistGenerator.finalizeChecklist();
+                this.listChecklist.reloadList();
+
                 break;
             case 'deleteChecklist':
                 this.listChecklist.deleteChecklist(element.value);

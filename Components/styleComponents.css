@@ -253,8 +253,7 @@
 
 #divListChecklist{
     margin: 5px;
-    height: 50px;
-    flex-grow: 1; 
+    height: 100%;
     background: rgba(77, 77, 77, .2);
     border-radius: 5px;
     border: solid 1px rgb(77, 77, 77);

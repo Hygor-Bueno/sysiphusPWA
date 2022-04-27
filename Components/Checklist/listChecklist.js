@@ -13,12 +13,14 @@ export class ListChecklist{
         `   
     }
     list(){ 
-        let listChecklist = JSON.parse(localStorage.data_sisyphus);
-        let response = "";
-        Object.keys(listChecklist).forEach(key => {
-            response += `<li><i>${listChecklist[key]['title']}</i> <button data-function="deleteChecklist" value='${key}'>X</button></li>`
-        })
-        return `<ol>${response}</ol>`
+        if(localStorage.getItem('localStorage')){
+            let listChecklist = JSON.parse(localStorage.data_sisyphus);
+            let response = "";
+            Object.keys(listChecklist).forEach(key => {
+                response += `<li><i>${listChecklist[key]['title']}</i> <button data-function="deleteChecklist" value='${key}'>X</button></li>`
+            })
+            return `<ol>${response}</ol>`
+        }
     }
     deleteChecklist(key){
         let listChecklist = JSON.parse(localStorage.data_sisyphus);

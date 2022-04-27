@@ -33,7 +33,16 @@ export class ChecklistGenerator {
                     <div>
 
                     </div>
-                </div>             
+                </div>    
+                <div id="divItemButtonGroup">
+                    <button type="button" class="buttonDefualt" data-function="cleanForm" title="Limpar"> &#10006; </button>
+                    <button type="button" class="buttonDefualt" value="next" data-function="controllerItem" title="Avançar"> &#8680; </button>
+                    <!--
+                    <div>
+                     <button type="button" class="buttonDefualt" value="back" data-function="controllerItem" title="Voltar"> &#8678; </button> 
+                    </div>
+                    -->
+                </div>         
             </aside>
             <section>
                 <article>
@@ -63,13 +72,7 @@ export class ChecklistGenerator {
                         <input class="formItemsStyle" type="time" title="Hora final da tarefa">
                     </div>
                 </article>
-                <div id="divItemButtonGroup">
-                    <button type="button" class="buttonDefualt" data-function="cleanForm" title="Limpar"> &#10006; </button>
-                    <div>
-                        <button type="button" class="buttonDefualt" value="back" data-function="controllerItem" title="Voltar"> &#8678; </button>
-                        <button type="button" class="buttonDefualt" value="next" data-function="controllerItem" title="Avançar"> &#8680; </button>
-                    </div>
-                </div>
+                
             </section>
             <footer>
                 <button type="button" data-function="cancelCehcklist" class="buttonDefualt"> Cancelar </button>

@@ -1,5 +1,4 @@
 export class ListChecklist{
-    limit = 5;
     template() {
         return `
         <div id='divListChecklist'>
@@ -7,7 +6,7 @@ export class ListChecklist{
                 <h1>Checklists criados.</h1>
             </header>
             <section>
-                ${this.list()}
+                ${this.list() || ""}
             </section>
         </div>
         `   

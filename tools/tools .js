@@ -43,13 +43,17 @@ export class SisyphusTools {
                 this.navRouter.router()
                 break;
             case 'finalizeChecklist':
-
                 this.checklistGenerator.finalizeChecklist();
                 this.listChecklist.reloadList();
-
                 break;
             case 'deleteChecklist':
                 this.listChecklist.deleteChecklist(element.value);
+                break;
+            case 'controllerChecklist':
+                this.listChecklist.controllerChecklist(element);
+                break;
+            case 'checkedItem':
+                console.log('CheckedCkicl');
                 break;
             default:
                 console.error("Invalid data-function");
@@ -64,9 +68,10 @@ export class SisyphusTools {
 
     validateElement(element) {
         let reponse = false;
-        let arrayExceptions = ["BUTTON", "LI"]
+        let arrayExceptions = ["BUTTON", "LI", "checkbox"]
+        console.log(element.type)
         arrayExceptions.forEach(exception => {
-            if (element.tagName == exception) reponse = true;
+            if (element.tagName == exception || element.type == exception) reponse = true;
         })
         return reponse;
     }

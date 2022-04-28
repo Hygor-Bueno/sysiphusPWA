@@ -154,7 +154,6 @@ export class ChecklistGenerator {
     }
     finalizeChecklist() {
         this.checklist.setTitle(document.querySelector('#checklistTitle input').value);
-        console.log(this.checklist)
         this.saveChecklist();
         this.cleanFormGeneral();
         this.cleanForm('.formItemsStyle');

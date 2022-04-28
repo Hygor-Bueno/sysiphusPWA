@@ -12,8 +12,7 @@ export class ListChecklist{
         `   
     }
     list(){ 
-        if(localStorage.getItem('data_sisyphus')){
-            
+        if(localStorage.getItem('data_sisyphus')){            
             let listChecklist = JSON.parse(localStorage.data_sisyphus);
             let response = "";
             Object.keys(listChecklist).forEach(key => {
@@ -21,6 +20,9 @@ export class ListChecklist{
             })
             return `<ol>${response}</ol>`
         }
+    }
+    listHome(){
+        
     }
     deleteChecklist(key){
         let listChecklist = JSON.parse(localStorage.data_sisyphus);

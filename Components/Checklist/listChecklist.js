@@ -58,6 +58,9 @@ export class ListChecklist {
     closeChecklist(element){ 
         document.querySelector(`#itemChecklist${element.value} section`).style.display = 'flex';
     }
+    doneIten(){ 
+                
+    }
     controllerChecklist(element){ 
         if(document.querySelector(`#itemChecklist${element.value} section`).style.display == 'flex'){
             this.openChecklist(element);

@@ -69,7 +69,6 @@ export class SisyphusTools {
     validateElement(element) {
         let reponse = false;
         let arrayExceptions = ["BUTTON", "LI", "checkbox"]
-        console.log(element.type)
         arrayExceptions.forEach(exception => {
             if (element.tagName == exception || element.type == exception) reponse = true;
         })

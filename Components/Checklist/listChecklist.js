@@ -29,12 +29,13 @@ export class ListChecklist {
         if (localStorage.getItem('data_sisyphus')) {
             let listChecklist = JSON.parse(localStorage.data_sisyphus);
             let response = "";
+            console.log(this.dataSisyphus)
             Object.keys(listChecklist).forEach(key => {
                 response += `
                 <div class="itemChecklist" id="itemChecklist${key}">
                     <header><p>${listChecklist[key]['title']}</p><button type="button" title="abrir checklist" data-function="controllerChecklist" value="${key}">E</button></header>
                     <section style="display: none">
-                        ${this.itemsChecklistToday(listChecklist[key]['listItems'])}
+                        ${this.itemsChecklistToday(listChecklist[key]['listItems'],key)}
                     </section>
                 </div>`
                 
@@ -42,12 +43,12 @@ export class ListChecklist {
             return `${response}`
         }
     }
-    itemsChecklistToday(item) {
+    itemsChecklistToday(item,keyChecklist) {
         let response ="";
         Object.keys(item).forEach(key => {
             if(item[key].date == this.utils.toDay()){
                 console.log(item[key].done)
-                response += `<div><input data-function="checkedItem" type="checkbox" id='${item[key].idItem}' ${item[key].done && 'checked disabled'}/><i>${item[key].description}</i></div>`
+                response += `<div><input data-function="checkedItem" value=${key} data-checklist=${keyChecklist} type="checkbox" id='${item[key].idItem}' ${item[key].done && 'checked disabled'}/><i>${item[key].description}</i></div>`
             }
         })
         return response;
@@ -58,9 +59,13 @@ export class ListChecklist {
     closeChecklist(element){ 
         document.querySelector(`#itemChecklist${element.value} section`).style.display = 'flex';
     }
-    doneIten(){ 
-                
+    doneItem(element){ 
+        this.dataSisyphus[element.getAttribute('data-checklist')].listItems[element.value].done = true;
+        element.disabled = true;
+        this.utils.setDataSisyphus(this.dataSisyphus)
+        console.log(this.utils.getDataSisyphus())
     }
+
     controllerChecklist(element){ 
         if(document.querySelector(`#itemChecklist${element.value} section`).style.display == 'flex'){
             this.openChecklist(element);

@@ -53,7 +53,7 @@ export class SisyphusTools {
                 this.listChecklist.controllerChecklist(element);
                 break;
             case 'checkedItem':
-                console.log('CheckedCkicl');
+                this.listChecklist.doneItem(element);
                 break;
             default:
                 console.error("Invalid data-function");

@@ -46,4 +46,22 @@ export class Utils {
         return  year + '-' + month + '-' + day;
 
     }
+    setDataSisyphus(newData){
+        localStorage.setItem('data_sisyphus',JSON.stringify(newData))
+    }
+    getDataSisyphus(){ 
+        let response;
+        if(localStorage.getItem('data_sisyphus')){
+            response = {
+                error: false,
+                data:JSON.parse(localStorage.getItem('data_sisyphus'))
+            }
+        }else{
+            response = {
+                error:true,
+                data: 'no data'
+            }
+        }
+        return response;
+    }
 }

@@ -1,6 +1,3 @@
-
-
-
 import { PageApp } from "./Components/Page/page.js";
 import { Routers } from "./Routers/router.js";
 import { SisyphusTools } from "./tools/tools .js";
@@ -13,6 +10,7 @@ var router = new Routers;
     document.querySelector('body').innerHTML ="";
     document.querySelector('body').insertAdjacentHTML("beforeend", pageApp.template());
     !localStorage.getItem("router_sisyphus") && localStorage.setItem("router_sisyphus","home");
+    !localStorage.getItem("point_sisyphus") && localStorage.setItem("point_sisyphus",0);
     router.router();
     tools.pageClick()
 })();

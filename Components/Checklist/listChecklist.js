@@ -1,7 +1,9 @@
 import { Utils } from "../../Utils/utils.js";
+import { Points } from "../Points/Points.js";
 
 export class ListChecklist {
     utils = new Utils
+    point = new Points
     dataSisyphus = localStorage.data_sisyphus ? JSON.parse(localStorage.data_sisyphus): "";
     template() {
         return `
@@ -60,10 +62,11 @@ export class ListChecklist {
         document.querySelector(`#itemChecklist${element.value} section`).style.display = 'flex';
     }
     doneItem(element){ 
-        this.dataSisyphus[element.getAttribute('data-checklist')].listItems[element.value].done = true;
+        let item = this.dataSisyphus[element.getAttribute('data-checklist')].listItems[element.value];
+        item.done = true;
         element.disabled = true;
-        this.utils.setDataSisyphus(this.dataSisyphus)
-        console.log(this.utils.getDataSisyphus())
+        //this.utils.setDataSisyphus(this.dataSisyphus)
+        this.point.setPoint(parseInt(item.level) * 20 + this.point.getPoint())
     }
 
     controllerChecklist(element){ 

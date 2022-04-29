@@ -2,12 +2,14 @@ import { Routers } from "../Routers/router.js";
 import { Utils } from "../Utils/utils.js";
 import { ChecklistGenerator } from "../Components/Checklist/checklistGenerator.js";
 import { ListChecklist } from "../Components/Checklist/listChecklist.js";
+import { Points } from "../Components/Points/Points.js";
 
 export class SisyphusTools {
     navRouter = new Routers;
     utils = new Utils;
     checklistGenerator = new ChecklistGenerator;
     listChecklist = new ListChecklist;
+    points = new Points;
     pageClick() {
         document.addEventListener("click", element => {
             this.validateElement(element.target) && this.filterFunction(element.target);
@@ -54,6 +56,9 @@ export class SisyphusTools {
                 break;
             case 'checkedItem':
                 this.listChecklist.doneItem(element);
+                break;
+            case 'rescuePoint':
+                this.points.rescuePoint();
                 break;
             default:
                 console.error("Invalid data-function");

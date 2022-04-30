@@ -23,6 +23,11 @@ export class Points{
         localStorage.point_sisyphus = this.#point;
     }
     rescuePoint(){ 
-        this.setPoint(this.#point - document.getElementById('inputPoint').value);
+        if(document.getElementById('inputPoint').value < this.#point){             
+            this.setPoint(this.#point - document.getElementById('inputPoint').value);
+        }else{
+            alert('Atenção! pontos insuficientes');
+            document.getElementById('inputPoint').value = ""
+        }
     }
 }

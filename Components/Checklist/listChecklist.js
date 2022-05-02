@@ -35,7 +35,7 @@ export class ListChecklist {
             Object.keys(listChecklist).forEach(key => {
                 response += `
                 <div class="itemChecklist" id="itemChecklist${key}">
-                    <header><p>${listChecklist[key]['title']}</p><button type="button" title="abrir checklist" data-function="controllerChecklist" value="${key}">E</button></header>
+                    <header><p>${listChecklist[key]['title']}</p><button type="button" title="Abrir checklist" data-function="controllerChecklist" value="${key}">E</button></header>
                     <section style="display: none">
                         ${this.itemsChecklistToday(listChecklist[key]['listItems'],key)}
                     </section>

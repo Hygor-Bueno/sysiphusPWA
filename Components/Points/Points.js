@@ -14,17 +14,19 @@ export class Points{
     getPoint(){
         return this.#point;
     }
-    setPoint(point){
+    setPoint(point){        
         this.#point = point;
         this.reloadPoint();
+        console.log(this.#point);
     }
     reloadPoint(){ 
         document.querySelector('#divPoint h1').innerText = this.#point;
-        localStorage.point_sisyphus = this.#point;
+        localStorage.setItem('point_sisyphus',this.#point);
     }
     rescuePoint(){ 
-        if(document.getElementById('inputPoint').value < this.#point){             
-            this.setPoint(this.#point - parseInt(document.getElementById('inputPoint').value));
+        let point = parseInt(localStorage.getItem('point_sisyphus')) || 0
+        if(document.getElementById('inputPoint').value < point){     
+            this.setPoint(point - parseInt(document.getElementById('inputPoint').value));
         }else{
             alert('Atenção! pontos insuficientes');
         }

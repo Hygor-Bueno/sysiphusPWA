@@ -5,6 +5,7 @@ export class ListChecklist {
     utils = new Utils
     point = new Points
     dataSisyphus = localStorage.data_sisyphus ? JSON.parse(localStorage.data_sisyphus): "";
+    
     template() {
         return `
         <div id='divListChecklist'>
@@ -31,16 +32,16 @@ export class ListChecklist {
         if (localStorage.getItem('data_sisyphus')) {
             let listChecklist = JSON.parse(localStorage.data_sisyphus);
             let response = "";
-            console.log(this.dataSisyphus)
             Object.keys(listChecklist).forEach(key => {
-                response += `
-                <div class="itemChecklist" id="itemChecklist${key}">
-                    <header><p>${listChecklist[key]['title']}</p><button type="button" title="Abrir checklist" data-function="controllerChecklist" value="${key}">E</button></header>
-                    <section style="display: none">
-                        ${this.itemsChecklistToday(listChecklist[key]['listItems'],key)}
-                    </section>
-                </div>`
-                
+                if(this.utils.biggestDate(listChecklist[key]['listItems']) >= this.utils.toDay()){                
+                    response += `
+                    <div class="itemChecklist" id="itemChecklist${key}">
+                        <header><p>${listChecklist[key]['title']}</p><button type="button" title="Abrir checklist" data-function="controllerChecklist" value="${key}">E</button></header>
+                        <section style="display: none">
+                            ${this.itemsChecklistToday(listChecklist[key]['listItems'],key)}
+                        </section>
+                    </div>`
+                }
             })
             return `${response}`
         }

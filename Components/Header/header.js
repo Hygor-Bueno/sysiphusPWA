@@ -15,11 +15,10 @@ export class HeaderApp{
     }
     menu(){
         return`
-            <nav style="display:none">
+            <nav style="display:flex">
                 <ul>
                     <li data-function="navPages" data-pages="home">Página Inicial</li>
-                    <li data-function="navPages" data-pages="newChecklist">Nova Lista de Tarefas</li>
-                    <li data-function="navPages" data-pages="points">Gerenciar Pontos</li>
+                    <li data-function="navPages" data-pages="newChecklist">Adicionar Checklist</li>
                 </ul>
             </nav>
         `

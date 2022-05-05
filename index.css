@@ -1,5 +1,5 @@
 /* Configurações de estilo básicos da Página. */
-h1,body,button,p{
+h1,body,button,p,li,ul{
     margin:0px;
     padding:0px;
 }

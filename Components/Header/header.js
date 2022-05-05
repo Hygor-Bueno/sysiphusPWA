@@ -15,7 +15,7 @@ export class HeaderApp{
     }
     menu(){
         return`
-            <nav style="display:flex">
+            <nav style="display:none">
                 <ul>
                     <li data-function="navPages" data-pages="home">Página Inicial</li>
                     <li data-function="navPages" data-pages="newChecklist">Adicionar Checklist</li>

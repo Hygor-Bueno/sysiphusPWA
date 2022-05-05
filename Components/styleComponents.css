@@ -138,7 +138,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    
+    margin-top: 65px;
 }
 #createChecklist {
     margin: 5px;

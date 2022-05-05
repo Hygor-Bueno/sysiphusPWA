@@ -66,7 +66,7 @@ export class ListChecklist {
         let item = this.dataSisyphus[element.getAttribute('data-checklist')].listItems[element.value];
         item.done = true;
         element.disabled = true;
-        //this.utils.setDataSisyphus(this.dataSisyphus)
+        this.utils.setDataSisyphus(this.dataSisyphus)
         this.point.setPoint(parseInt(item.level) * 20 + this.point.getPoint())
     }
 

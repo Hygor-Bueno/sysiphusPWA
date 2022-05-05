@@ -1,14 +1,22 @@
+import { Utils } from "../../Utils/utils.js";
+
 export class Points{
+    utils = new Utils;
     #point = parseInt(localStorage.getItem('point_sisyphus')) || 0  ;
     template(){ 
         return `
-            <div id="divPoint">
-                <section>
-                    <input type="number" id="inputPoint" min="0"/> 
+        <div id="divPoint">
+            <header>
+                <h1>Pontos Acúmulados: </h1>
+            </header>
+            <section>
+                <article>                    
+                    <input type="number" id="inputPoint" min="0" placeholder="0"/> 
                     <button type="button" data-function="rescuePoint"> - </button>
-                </section>
-                <h1>${this.#point}</h1>
-            </div>
+                </article>
+                <div><h1>${this.#point}</h1><i>/ ${this.utils.minutesForHour(this.#point)}hrs </i></div>
+            </section>
+        </div>
         `
     }
     getPoint(){
@@ -17,10 +25,9 @@ export class Points{
     setPoint(point){        
         this.#point = point;
         this.reloadPoint();
-        console.log(this.#point);
     }
     reloadPoint(){ 
-        document.querySelector('#divPoint h1').innerText = this.#point;
+        document.querySelector('#divPoint section h1').innerText = this.#point;
         localStorage.setItem('point_sisyphus',this.#point);
     }
     rescuePoint(){ 

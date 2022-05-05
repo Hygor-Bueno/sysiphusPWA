@@ -1,5 +1,5 @@
 /* Configurações de estilo básicos da Página. */
-h1,body,button{
+h1,body,button,p{
     margin:0px;
     padding:0px;
 }
@@ -26,11 +26,19 @@ body{
     border-bottom:solid 3px rgb(77,77,77);
     color:white;
 }
+
 .buttonDefualt:active{
     position:relative;
     top:3px;
     border-bottom: none;
 }
+
+/*ITENS OBRIGATÓRIOS*/
+.mandatoryItem b{
+    color: #B5001A;
+    font-size: 13px;
+}
+
 /* Esse código será apagado. serve apenas para vizualizar as cores que iremos trabalhar no projeto; */
 .circle{
     margin:5px;
@@ -51,9 +59,4 @@ body{
 }
 .mercuryColor{
     background:rgb(77,77,77);
-}
-/*ITENS OBRIGATÓRIOS*/
-.mandatoryItem b{
-    color: #B5001A;
-    font-size: 13px;
 }

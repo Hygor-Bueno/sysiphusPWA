@@ -22,11 +22,11 @@ export class Modal{
                 <div class="message">
                     <p>${message}</p>
                 </div>
-                ${this.config[type].footer && `
+                ${this.config[type].footer ? `
                 <div class="footer">
                     <button type="button" data-function="confirmModal">confirmar</button>
                     <button type="button" data-function="cancelModal">cancelar</button>
-                </div>`
+                </div>`:''
                 }
                 
             </section>
@@ -34,5 +34,7 @@ export class Modal{
                         `
         document.querySelector('body').insertAdjacentHTML('beforeend',response);
     }
-
+    close(){
+        document.getElementById('modalSysiphus').remove();
+    }
 }

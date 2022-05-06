@@ -138,14 +138,14 @@
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    margin-top: 65px;
+    height: 100%;
 }
 #createChecklist {
     margin: 5px;
     height: 450px;
 }
 #viewChecklist {
-    height: 450px;
+    min-height: 450px;
 }
 #createChecklist, #viewChecklist {
     display: flex;

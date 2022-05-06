@@ -1,5 +1,5 @@
 /* Configurações de estilo básicos da Página. */
-h1,body,button,p,li,ul{
+h1,body,button,p,li,ul,h3{
     margin:0px;
     padding:0px;
 }
@@ -59,4 +59,47 @@ body{
 }
 .mercuryColor{
     background:rgb(77,77,77);
+}
+#modalSysiphus{
+    position: absolute;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    background:rgba(0,0,0,0.5);
+    width:100%;
+    height: 100%;
+}
+#modalSysiphus section{
+    position:fixed;
+    width:220px;
+    height:120px;
+    font-size:20px;
+    background:#fff; 
+    border-radius:5px;
+    padding:5px;
+}
+
+#modalSysiphus section .title button{
+    position:absolute;
+    right:0;
+    width:25px;
+    height:25px;
+    border-radius: 12.5px;
+    margin-top:-15px;
+    margin-right: -12px;
+}
+#modalSysiphus section .title{
+    background:#ffff0088;
+    height:25%;
+}
+#modalSysiphus section .message{
+    background:#ff00ff88;
+    height:50%;
+    overflow-y: auto;
+}
+#modalSysiphus section .footer{
+    display:flex;
+    justify-content:space-between;
+    background:#00ffff88;
+    height:25%;
 }

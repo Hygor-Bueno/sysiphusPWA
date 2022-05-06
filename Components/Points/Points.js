@@ -28,6 +28,7 @@ export class Points{
     }
     reloadPoint(){ 
         document.querySelector('#divPoint section h1').innerText = this.#point;
+        document.querySelector('#divPoint section i').innerText = `/ ${this.utils.minutesForHour(this.#point)}hrs`;
         localStorage.setItem('point_sisyphus',this.#point);
     }
     rescuePoint(){ 

@@ -153,10 +153,14 @@ export class ChecklistGenerator {
         return items;
     }
     finalizeChecklist() {
-        this.checklist.setTitle(document.querySelector('#checklistTitle input').value);
-        this.saveChecklist();
-        this.cleanFormGeneral();
-        this.cleanForm('.formItemsStyle');
+        if(this.currentItem > 1 || document.querySelector('#listItems div ol li')){
+            this.checklist.setTitle(document.querySelector('#checklistTitle input').value);
+            this.saveChecklist();
+            this.cleanFormGeneral();
+            this.cleanForm('.formItemsStyle');
+        }else{
+            alert("Por favor antes de concluir o checklist adicione um item.")
+        }
     }
     saveChecklist() {
         let listChecklist = JSON.parse(localStorage.getItem('data_sisyphus')) || "";

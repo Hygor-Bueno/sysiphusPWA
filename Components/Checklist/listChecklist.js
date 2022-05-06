@@ -36,7 +36,7 @@ export class ListChecklist {
                     <div class="itemChecklist" id="itemChecklist${key}">
                         <header><p>${listChecklist[key]['title']}</p><button type="button" title="Abrir checklist" data-function="controllerChecklist" value="${key}">E</button></header>
                         <section style="display: none">
-                            ${this.itemsChecklistToday(listChecklist[key]['listItems'],key)}
+                            ${this.itemsChecklistToday(listChecklist[key]['listItems'],key) || '<b>* Ops! Você não possuí tarefas para hoje.</b>'}
                         </section>
                     </div>`
                 }
@@ -55,10 +55,10 @@ export class ListChecklist {
         return response;
     }
     openChecklist(element){
-        document.querySelector(`#itemChecklist${element.value} section`).style.display = 'none';
+        document.querySelector(`#itemChecklist${element.value} section`).style.display = 'flex';
     }
     closeChecklist(element){ 
-        document.querySelector(`#itemChecklist${element.value} section`).style.display = 'flex';
+        document.querySelector(`#itemChecklist${element.value} section`).style.display = 'none';
     }
     doneItem(element){ 
         let dataSisyphus = JSON.parse(localStorage.data_sisyphus)        
@@ -71,9 +71,9 @@ export class ListChecklist {
 
     controllerChecklist(element){ 
         if(document.querySelector(`#itemChecklist${element.value} section`).style.display == 'flex'){
-            this.openChecklist(element);
-        }else{
             this.closeChecklist(element);
+        }else{       
+            this.openChecklist(element);
         }
     }
     deleteChecklist(key) {

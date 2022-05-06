@@ -131,6 +131,10 @@
     display:none;
     flex-direction: column;
 }
+.itemChecklist section b{
+    margin: 0px 0px 5px 5px;
+    font-size:16px;
+}
 
 /* Estilo do Componente criar checklist. */
 #pageNewChecklist {

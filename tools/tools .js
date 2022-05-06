@@ -43,7 +43,7 @@ export class SisyphusTools {
             case 'controllerItem':
                 element.value == 'next' ? this.checklistGenerator.addCurrentItem() : this.checklistGenerator.backItem();
                 break;
-            case 'cancelCehcklist':
+            case 'cancelChecklist':
                 localStorage.setItem('router_sisyphus', "home")
                 this.navRouter.router()
                 break;

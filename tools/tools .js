@@ -62,7 +62,7 @@ export class SisyphusTools {
                 break;
             case 'rescuePoint':
                 this.points.rescuePoint();
-                //this.modal.modalAlert('A mulekke \n','alert')
+                this.modal.modalAlert('A mulekke \n','alert')
                 break;
             case 'closeModal':
                 this.modal.close();

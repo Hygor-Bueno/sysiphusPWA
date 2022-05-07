@@ -33,7 +33,7 @@ export class Points{
     }
     rescuePoint(){ 
         let point = parseInt(localStorage.getItem('point_sisyphus')) || 0
-        if(document.getElementById('inputPoint').value < point){     
+        if(document.getElementById('inputPoint').value <= point){     
             this.setPoint(point - parseInt(document.getElementById('inputPoint').value || 0));
         }else{
             alert('Atenção! pontos insuficientes');

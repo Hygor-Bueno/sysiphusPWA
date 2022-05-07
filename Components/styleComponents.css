@@ -131,6 +131,16 @@
     display:none;
     flex-direction: column;
 }
+.itemChecklist section div{
+    display: flex;
+    align-items:center;    
+}
+
+.itemChecklist section div input{
+    min-width: 20px;
+    min-height: 20px;
+    margin-right: 10px;
+}
 .itemChecklist section b{
     margin: 0px 0px 5px 5px;
     font-size:16px;

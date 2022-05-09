@@ -1,22 +1,24 @@
-export class Modal{
+import { Routers } from "../Routers/router.js";
 
+export class Modal {
+    routers = new Routers;
     config = {
-        alert:{
-            title:'Atenção !',
-            footer:false
+        alert: {
+            title: 'Atenção !',
+            footer: false
         },
-        confirm:{
-            title:"Você tem certeza?",
-            footer:true
+        confirm: {
+            title: "Você tem certeza?",
+            footer: true
         }
     }
 
-    modalAlert(message,type){
+    modalAlert(message, type, object,key) {
         let response = `
         <div id="modalSysiphus">                            
             <section>
                 <div class="title">
-                    <button type="button" data-function="closeModal">X</button>
+                    ${!this.config[type].footer ? '<button type="button" data-function="closeModal">X</button>':""}
                     <h3>${this.config[type].title}</h3>
                 </div>
                 <div class="message">
@@ -24,17 +26,27 @@ export class Modal{
                 </div>
                 ${this.config[type].footer ? `
                 <div class="footer">
-                    <button type="button" data-function="confirmModal">confirmar</button>
-                    <button type="button" data-function="cancelModal">cancelar</button>
-                </div>`:''
-                }
+                    <button type="button" title="Confirmar" value="1">confirmar</button>
+                    <button type="button" title="Cancelar"> cancelar </button>
+                </div>`: ''
+            }
                 
             </section>
-        </div>
-                        `
-        document.querySelector('body').insertAdjacentHTML('beforeend',response);
+        </div>`
+        document.querySelector('body').insertAdjacentHTML('beforeend', response);
+        if (type == 'confirm') this.confirmButton(object,key);
     }
-    close(){
+    close() {
         document.getElementById('modalSysiphus').remove();
+    }
+    confirmButton(object,key) {
+        document.querySelector('#modalSysiphus .footer').addEventListener('click', (value) => {
+            if (value.target.value == "1") {
+                object[key]();
+            }else{
+                this.routers.router()
+            }
+            this.close();
+        })
     }
 }

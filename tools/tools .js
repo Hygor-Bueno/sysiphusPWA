@@ -60,9 +60,8 @@ export class SisyphusTools {
             case 'checkedItem':
                 this.listChecklist.doneItem(element);
                 break;
-            case 'rescuePoint':
-                this.points.rescuePoint();
-                this.modal.modalAlert('A mulekke \n','alert')
+            case 'rescuePoint':                
+                this.modal.modalAlert('A mulekke \n','confirm',this.points,'rescuePoint');
                 break;
             case 'closeModal':
                 this.modal.close();

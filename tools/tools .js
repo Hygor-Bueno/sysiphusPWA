@@ -60,8 +60,10 @@ export class SisyphusTools {
             case 'checkedItem':
                 this.listChecklist.doneItem(element);
                 break;
-            case 'rescuePoint':                
-                this.modal.modalAlert('A mulekke \n','confirm',this.points,'rescuePoint');
+            case 'rescuePoint': 
+                let time = this.utils.minutesForHour(parseInt(document.getElementById('inputPoint').value) || 0);              
+                let message = `Você irá debita ${time} ${time.split(':')[0] == 0 ? 'min' : 'hrs'}. \n Deseja continuar?`
+                this.modal.modalAlert(message,'confirm',this.points,'rescuePoint');
                 break;
             case 'closeModal':
                 this.modal.close();

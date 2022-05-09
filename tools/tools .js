@@ -62,7 +62,7 @@ export class SisyphusTools {
                 break;
             case 'rescuePoint': 
                 let time = this.utils.minutesForHour(parseInt(document.getElementById('inputPoint').value) || 0);              
-                let message = `Você irá debita ${time} ${time.split(':')[0] == 0 ? 'min' : 'hrs'}. \n Deseja continuar?`
+                let message = `Você irá debitar ${time} ${time.split(':')[0] == 0 ? 'min' : 'hrs'}. \n Deseja continuar?`
                 this.modal.modalAlert(message,'confirm',this.points,'rescuePoint');
                 break;
             case 'closeModal':

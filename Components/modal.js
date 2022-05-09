@@ -26,7 +26,7 @@ export class Modal {
                 </div>
                 ${this.config[type].footer ? `
                 <div class="footer">
-                    <button type="button" id="btnModalConfirm" title="Confirmar" value="1">&#128504;</button>
+                    <button type="button" id="btnModalConfirm" title="Confirmar" value="1"> &#x2713; </button>
                     <button type="button" id="btnModalCancel" title="Cancelar"> &#10007; </button>
                 </div>`: ''
             }

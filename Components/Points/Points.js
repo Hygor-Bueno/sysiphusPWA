@@ -22,7 +22,7 @@ export class Points{
     getPoint(){
         return this.#point;
     }
-    setPoint(point){  
+    setPoint(point){        
         this.#point = point;
         this.reloadPoint();
     }

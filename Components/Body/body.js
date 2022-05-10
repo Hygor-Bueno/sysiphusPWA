@@ -1,4 +1,7 @@
+import { ListChecklist } from "../Checklist/listChecklist.js";
+
 export class BodyApp{
+    listChecklist = new ListChecklist;
     template(){
         return`
         <section id="bodyContent">
@@ -9,5 +12,9 @@ export class BodyApp{
     }
     loadContent(elementHTML){       
         document.getElementById("contentDefault").insertAdjacentHTML("beforeend",elementHTML);
+        this.setting();
+    }
+    setting(){ 
+        this.listChecklist.settingsList();
     }
 }

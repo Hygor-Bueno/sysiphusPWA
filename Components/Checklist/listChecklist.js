@@ -33,8 +33,8 @@ export class ListChecklist {
             Object.keys(listChecklist).forEach(key => {
                 if(this.utils.biggestDate(listChecklist[key]['listItems']) >= this.utils.toDay()){                
                     response += `
-                    <div class="itemChecklist" id="itemChecklist${key}">
-                        <header><p>${listChecklist[key]['title']}</p><button type="button" title="Abrir checklist" data-function="controllerChecklist" value="${key}">E</button></header>
+                    <div class="itemChecklist" value="${key}" id="itemChecklist${key}">
+                        <header><p>${listChecklist[key]['title']}</p></header>
                         <section style="display: none">
                             ${this.itemsChecklistToday(listChecklist[key]['listItems'],key) || '<b>* Ops! Você não possuí tarefas para hoje.</b>'}
                         </section>
@@ -44,21 +44,29 @@ export class ListChecklist {
             return `${response}`
         }
     }
+    settingsList(){
+       if(document.querySelectorAll('.itemChecklist')){ 
+           document.querySelectorAll('.itemChecklist').forEach(element=>{
+               element.addEventListener('click',()=>{
+                this.controllerChecklist(element.getAttribute('value'));
+               })
+           })
+       }
+    }
     itemsChecklistToday(item,keyChecklist) {
         let response ="";
         Object.keys(item).forEach(key => {
             if(item[key].date == this.utils.toDay()){
-                console.log(item[key].done)
                 response += `<div><input data-function="checkedItem" value=${key} data-checklist=${keyChecklist} type="checkbox" id='${item[key].idItem}' ${item[key].done && 'checked disabled'}/><i>${item[key].description}</i></div>`
             }
         })
         return response;
     }
     openChecklist(element){
-        document.querySelector(`#itemChecklist${element.value} section`).style.display = 'flex';
+        document.querySelector(`#itemChecklist${element} section`).style.display = 'flex';
     }
     closeChecklist(element){ 
-        document.querySelector(`#itemChecklist${element.value} section`).style.display = 'none';
+        document.querySelector(`#itemChecklist${element} section`).style.display = 'none';
     }
     doneItem(element){ 
         let dataSisyphus = JSON.parse(localStorage.data_sisyphus)        
@@ -70,7 +78,7 @@ export class ListChecklist {
     }
 
     controllerChecklist(element){ 
-        if(document.querySelector(`#itemChecklist${element.value} section`).style.display == 'flex'){
+        if(document.querySelector(`#itemChecklist${element} section`).style.display == 'flex'){
             this.closeChecklist(element);
         }else{       
             this.openChecklist(element);

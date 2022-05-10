@@ -68,7 +68,6 @@ export class Utils {
         let assistent = "1900-01-01";
         let arrayDate = [];
         Object.keys(itens).forEach(key=>{
-            console.log(itens[key])
             arrayDate.push(itens[key].date)
         })
         arrayDate.forEach(date=>{

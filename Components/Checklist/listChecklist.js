@@ -33,8 +33,8 @@ export class ListChecklist {
             Object.keys(listChecklist).forEach(key => {
                 if(this.utils.biggestDate(listChecklist[key]['listItems']) >= this.utils.toDay()){                
                     response += `
-                    <div class="itemChecklist" value="${key}" id="itemChecklist${key}">
-                        <header><p>${listChecklist[key]['title']}</p></header>
+                    <div class="itemChecklist"  id="itemChecklist${key}">
+                        <header value="${key}"><p>${listChecklist[key]['title']}</p></header>
                         <section style="display: none">
                             ${this.itemsChecklistToday(listChecklist[key]['listItems'],key) || '<b>* Ops! Você não possuí tarefas para hoje.</b>'}
                         </section>
@@ -46,7 +46,7 @@ export class ListChecklist {
     }
     settingsList(){
        if(document.querySelectorAll('.itemChecklist')){ 
-           document.querySelectorAll('.itemChecklist').forEach(element=>{
+           document.querySelectorAll('.itemChecklist header').forEach(element=>{
                element.addEventListener('click',()=>{
                 this.controllerChecklist(element.getAttribute('value'));
                })
@@ -57,7 +57,7 @@ export class ListChecklist {
         let response ="";
         Object.keys(item).forEach(key => {
             if(item[key].date == this.utils.toDay()){
-                response += `<div><input data-function="checkedItem" value=${key} data-checklist=${keyChecklist} type="checkbox" id='${item[key].idItem}' ${item[key].done && 'checked disabled'}/><i>${item[key].description}</i></div>`
+                response += `<div><input data-function="checkedItem" value=${key} data-checklist=${keyChecklist} type="checkbox" id='${keyChecklist}_${item[key].idItem}' ${item[key].done && 'checked disabled'}/><label for='${keyChecklist}_${item[key].idItem}'><i>${item[key].description}</i></label></div>`
             }
         })
         return response;
@@ -69,6 +69,7 @@ export class ListChecklist {
         document.querySelector(`#itemChecklist${element} section`).style.display = 'none';
     }
     doneItem(element){ 
+        this.point.setPoint(parseInt(localStorage.getItem('point_sisyphus')))           
         let dataSisyphus = JSON.parse(localStorage.data_sisyphus)        
         let item = dataSisyphus[element.getAttribute('data-checklist')].listItems[element.value];
         item.done = true;

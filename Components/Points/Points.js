@@ -1,7 +1,9 @@
 import { Utils } from "../../Utils/utils.js";
+import { Modal } from "../modal.js";
 
 export class Points{
     utils = new Utils;
+    modal = new Modal;
     #point = parseInt(localStorage.getItem('point_sisyphus')) || 0  ;
     template(){ 
         return `
@@ -36,7 +38,7 @@ export class Points{
         if(document.getElementById('inputPoint').value <= point){     
             this.setPoint(point - parseInt(document.getElementById('inputPoint').value || 0));
         }else{
-            alert('Atenção! pontos insuficientes');
+            this.modal.modalAlert('Atenção! pontos insuficientes','alert');
         }
         document.getElementById('inputPoint').value = ""
     }

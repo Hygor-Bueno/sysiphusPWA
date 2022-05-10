@@ -88,6 +88,10 @@ body{
     border-radius: 12.5px;
     margin-top:-35px;
     margin-right: -12px;
+    font-weight: bold;
+    color:white;
+    background:#B5001A;
+    border:none;
 }
 #modalSysiphus section .title{
     display: flex;

@@ -1,13 +1,14 @@
 import { Checklist } from "../../Object/Checklist.js"
 import { Items } from "../../Object/Items.js";
 import { Utils } from "../../Utils/utils.js";
+import { Modal } from "../modal.js";
 
 export class ChecklistGenerator {
     currentItem = 1;
     taskId=1;
     checklist = new Checklist;
     utils = new Utils;
-
+    modal = new Modal;
     template() {
         return `
         <div id="divCreateChecklist">
@@ -113,9 +114,9 @@ export class ChecklistGenerator {
             document.querySelector('#listItems div ol').innerHTML = "";
             this.cleanForm('#checklistDate input');
         }else if(this.currentItem >= this.checklist.getMaxItems() && document.querySelector('#listItems div ol li') ){ 
-            alert(' Ops ! \n limite máximo de itens atingida. \n Por favor clicar em "Concluir"')
+            this.modal.modalAlert(' Ops ! \n limite máximo de itens atingida. \n Por favor clicar em "Concluir"','alert')
         }else{
-            alert('Para ir para o próximo dia, adicione ao menos um item.')
+            this.modal.modalAlert('Para avançar ao próximo dia, adicione ao menos um item.','alert')
         }
     }
     saveItem() {
@@ -124,7 +125,7 @@ export class ChecklistGenerator {
             this.addItemList()            
             this.cleanForm("#divCreateChecklist section article .formItemsStyle");
         } else if (!validation) {
-            alert("Por favor, preencher todos os itens obrigatórios");
+            this.modal.modalAlert("Por favor, preencher todos os itens obrigatórios",'alert');
         }
     }
 
@@ -159,7 +160,7 @@ export class ChecklistGenerator {
             this.cleanFormGeneral();
             this.cleanForm('.formItemsStyle');
         }else{
-            alert("Por favor antes de concluir o checklist adicione um item.")
+            this.modal.modalAlert("Por favor antes de concluir o checklist adicione um item.",'alert')
         }
     }
     saveChecklist() {

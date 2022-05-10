@@ -31,7 +31,7 @@ export class SisyphusTools {
                 if (this.checklistGenerator.controllerItems(element)) {
                     this.utils.selectUniqueButton(element.getAttribute("class"), element);
                 } else {
-                    alert("Ops, Quantidade de Item ultrapassa a quantidade máxima de dias selecionados.")
+                    this.modal.modalAlert("Ops, Quantidade de Item ultrapassa a quantidade máxima de dias selecionados.",'alert')
                 }
                 break;
             case 'cleanForm':

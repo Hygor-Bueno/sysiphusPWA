@@ -12,13 +12,11 @@ export class SisyphusTools {
     listChecklist = new ListChecklist;
     points = new Points;
     modal = new Modal
-
     pageClick() {
         document.addEventListener("click", element => {
             this.validateElement(element.target) && this.filterFunction(element.target);
         })
     }
-
     filterFunction(element) {
         switch (element.getAttribute("data-function")) {
             case 'menuViewSwitch':
@@ -61,7 +59,7 @@ export class SisyphusTools {
                 this.listChecklist.doneItem(element);
                 break;
             case 'rescuePoint': 
-                let time = this.utils.minutesForHour(parseInt(document.getElementById('inputPoint').value) || 0);              
+                let time = this.utils.minutesForHour(parseInt(document.getElementById('inputPoint').value) || 0);            
                 let message = `Você irá debitar ${time} ${time.split(':')[0] == 0 ? 'min' : 'hrs'}.`
                 this.modal.modalAlert(message,'confirm',this.points,'rescuePoint');
                 break;
